@@ -1,9 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 /*Team to develop JS */
 function App() {
-  return ();
+  return (
+    <div>
+      <header>
+        <p>Placeholder Text</p>
+      </header>
+    </div>
+  );
 }
 
 export default App;
