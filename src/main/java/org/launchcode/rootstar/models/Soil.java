@@ -1,6 +1,16 @@
 package org.launchcode.rootstar.models;
 
-public class Soil {
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+public class Soil extends AbstractEntity {
+
+    @OneToMany(mappedBy = "soil")
+    private final List<Garden> gardens = new ArrayList<>();
 
     private String type;
 
