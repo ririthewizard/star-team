@@ -22,7 +22,7 @@ public class PlantService {
 
     // CREATE
 
-    public Plant createPlant(Plant plant) {
+    public Plant addPlant(Plant plant) {
         return plantRepository.save(plant);
     }
 

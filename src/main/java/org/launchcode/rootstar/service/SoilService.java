@@ -21,7 +21,7 @@ public class SoilService {
     // CRUD operations for Soil class
 
     // CREATE
-    public Soil createSoil(Soil soil) {
+    public Soil addSoil(Soil soil) {
         return soilRepository.save(soil);
     }
 

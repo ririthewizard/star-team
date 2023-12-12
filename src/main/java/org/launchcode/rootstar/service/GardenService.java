@@ -20,7 +20,7 @@ public class GardenService {
     // CRUD operations for Garden class
 
     // CREATE
-    public Garden createGarden(Garden garden) {
+    public Garden addGarden(Garden garden) {
         return gardenRepository.save(garden);
     }
 

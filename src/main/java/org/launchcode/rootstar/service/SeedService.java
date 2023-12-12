@@ -21,7 +21,7 @@ public class SeedService {
     // CRUD operations for Seed class
 
     // CREATE
-    public Seed createSoil(Seed seed) {
+    public Seed addSeed(Seed seed) {
         return seedRepository.save(seed);
     }
 
