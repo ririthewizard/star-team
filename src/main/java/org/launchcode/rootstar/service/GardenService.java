@@ -12,11 +12,6 @@ import java.util.Optional;
 public class GardenService {
     private final GardenRepository gardenRepository;
 
-    // TBD If we want to use these
-//    private final PlantRepository plantRepository;
-//    private final SeedRepository seedRepository;
-//    private final SoilRepository soilRepository;
-
     @Autowired
     public GardenService(GardenRepository gardenRepository) {
         this.gardenRepository = gardenRepository;
@@ -38,8 +33,7 @@ public class GardenService {
         return gardenRepository.findAll();
     }
 
-    // TODO: UPDATE
-
+    // TODO: make UPDATE functionality
 
     // DELETE
     public void deleteGarden(int id) {
