@@ -1,7 +1,6 @@
 package org.launchcode.rootstar.controllers;
 
 import org.launchcode.rootstar.models.Seed;
-import org.launchcode.rootstar.models.data.SeedRepository;
 import org.launchcode.rootstar.service.SeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
