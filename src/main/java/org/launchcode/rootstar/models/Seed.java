@@ -15,11 +15,11 @@ public class Seed extends AbstractEntity {
     // CONSTRUCTORS
     public Seed(){}
 
-    public Seed(String growingZone, int daysToGermination, String annualOrPerrenial) {
+    public Seed(String growingZone, int daysToGermination, String annualOrPerennial) {
         super();
         this.growingZone = growingZone;
         this.daysToGermination = daysToGermination;
-        this.annualOrPerennial = annualOrPerrenial;
+        this.annualOrPerennial = annualOrPerennial;
     }
 
     // GETTERS AND SETTERS
