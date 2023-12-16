@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/seeds")
+@CrossOrigin
 public class SeedController {
 
     @Autowired

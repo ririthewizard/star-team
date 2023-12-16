@@ -1,12 +1,18 @@
 import "./App.css";
+import RootAppBar from "./components/AppBar";
+import SeedForm from "./components/Seed";
 
 /*Team to develop JS */
 function App() {
   return (
     <div>
       <header>
-        <p>Placeholder Text</p>
+        <RootAppBar />
       </header>
+      <body>
+        <p>Placeholder Text</p>
+        <SeedForm />
+      </body>
     </div>
   );
 }
