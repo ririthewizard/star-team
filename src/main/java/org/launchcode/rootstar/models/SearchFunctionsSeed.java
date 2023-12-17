@@ -5,50 +5,50 @@ import java.util.ArrayList;
 
 public class SearchFunctionsSeed {
 
-    public static ArrayList<Seed> findByColumnAndValue(String column, String value, Iterable<Seed> allSeeds) {
+    public static ArrayList<Garden> findByColumnAndValue(String column, String value, Iterable<Garden> allGardens) {
 
-        ArrayList<Seed> results = new ArrayList<>();
+        ArrayList<Garden> results = new ArrayList<>();
 
-        if (value.toLowerCase().equals("all")){ return (ArrayList<Seed>) allSeeds; }
+        if (value.toLowerCase().equals("all")){ return (ArrayList<Garden>) allGardens; }
 
         if (column.equals("all")){
-            results = findByValue(value, allSeeds);
+            results = findByValue(value, allGardens);
             return results;
         }
 
-        for (Seed seed : allSeeds) {
-            String seedValue = getFieldValue(seed, column);
+        for (Garden garden : allGardens) {
+            String gardenValue = getFieldValue(garden, column);
 
-            if (seedValue != null && seedValue.toLowerCase().contains(value.toLowerCase())){
-                results.add(seed);
+            if (gardenValue != null && gardenValue.toLowerCase().contains(value.toLowerCase())){
+                results.add(garden);
             }
         }
         return results;
     }
 
-    public static String getFieldValue(Seed seed, String fieldName) {
+    public static String getFieldValue(Garden garden, String fieldName) {
         String fieldValue = "";
         if (fieldName.equals("name")){
-            fieldValue = seed.getName();
-        } else if (fieldName.equals("growing zone")) {
-            fieldValue = seed.getGrowingZone();
-        } else if (fieldName.equals("annual") || fieldName.equals("perennial")) {
-            fieldValue = seed.getAnnualOrPerennial();
+            fieldValue = garden.getName();
+        } else if (fieldName.equals("seeds")) {
+            fieldValue = garden.getSeeds().toString();
+        } else if (fieldName.equals("plants")) {
+            fieldValue = garden.getPlants().toString();
         }
 
         return fieldValue;
     }
 
-    public static ArrayList<Seed> findByValue(String value, Iterable<Seed> allSeeds) {
-        ArrayList<Seed> results = new ArrayList<>();
+    public static ArrayList<Garden> findByValue(String value, Iterable<Garden> allGardens) {
+        ArrayList<Garden> results = new ArrayList<>();
 
-        for (Seed seed: allSeeds){
-            if (seed.getName().toLowerCase().contains(value.toLowerCase())){
-                results.add(seed);
-            } else if (seed.getGrowingZone().toLowerCase().contains(value.toLowerCase())){
-                results.add(seed);
-            } else if (seed.getAnnualOrPerennial().toLowerCase().contains(value.toLowerCase())){
-                results.add(seed);
+        for (Garden garden: allGardens){
+            if (garden.getName().toLowerCase().contains(value.toLowerCase())){
+                results.add(garden);
+            } else if (garden.getSeeds().toString().toLowerCase().contains(value.toLowerCase())){
+                results.add(garden);
+            } else if (garden.getPlants().toString().toLowerCase().contains(value.toLowerCase())){
+                results.add(garden);
             }
         }
         return results;
