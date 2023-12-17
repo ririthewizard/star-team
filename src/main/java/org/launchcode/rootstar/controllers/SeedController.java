@@ -21,18 +21,21 @@ public class SeedController {
 
     // GET MAPPING
     @GetMapping("/{id}")
-    public ResponseEntity<Seed> getEventById(@PathVariable int id) {
-        Optional<Seed> event = seedService.getSeedById(id);
-        return event.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    // Returns 200 OK HTTP Response (headers, status, and body) for seed if found, 404 if not
+    public ResponseEntity<Seed> getSeedById(@PathVariable int id) {
+        Optional<Seed> seed = seedService.getSeedById(id);
+        return seed.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("view-seeds")
+    // Returns all seeds in repository
     public List<Seed> viewSeeds() {
         return seedService.getAllSeeds();
     }
 
     // POST MAPPING
     @PostMapping("/add")
+    // Returns a response entity with Uniform Resource Identifier with new seed ID and Body
     public ResponseEntity<Seed> addSeed(@RequestBody Seed seed) throws URISyntaxException {
         Seed savedSeed = seedService.addSeed(seed);
         return ResponseEntity.created(new URI("/seeds/" + savedSeed.getId())).body(savedSeed);

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -33,7 +34,17 @@ public class GardenService {
         return gardenRepository.findAll();
     }
 
-    // TODO: make UPDATE functionality
+    // UPDATE
+    public Garden updateGarden(int id, Garden newGarden) {
+        Garden updatedGarden = gardenRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Garden with id " + id + " not found"));
+        updatedGarden.setName(newGarden.getName());
+        updatedGarden.setDescription(newGarden.getDescription());
+        updatedGarden.setSeeds(newGarden.getSeeds());
+        updatedGarden.setPlants(newGarden.getPlants());
+        updatedGarden.setSoil(newGarden.getSoil());
+        return gardenRepository.save(updatedGarden);
+    }
 
     // DELETE
     public void deleteGarden(int id) {
