@@ -7,43 +7,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Seed extends AbstractEntity {
+public class Plant extends AbstractEntity {
 
-    @ManyToMany(mappedBy = "seeds")
+    @ManyToMany(mappedBy = "plants")
     private final List<Garden> gardens = new ArrayList<>();
 
     private String growingZone;
-
-    private int daysToGermination;
 
     //TODO: refactor to use enum? Consider alternative to String
     private String annualOrPerennial;
 
     // CONSTRUCTORS
-    public Seed(){}
 
-    public Seed(String growingZone, int daysToGermination, String annualOrPerennial) {
+    public Plant(){}
+
+    public Plant(String growingZone, String annualOrPerennial) {
         super();
         this.growingZone = growingZone;
-        this.daysToGermination = daysToGermination;
         this.annualOrPerennial = annualOrPerennial;
     }
 
     // GETTERS AND SETTERS
+
     public String getGrowingZone() {
         return growingZone;
     }
 
     public void setGrowingZone(String growingZone) {
         this.growingZone = growingZone;
-    }
-
-    public int getDaysToGermination() {
-        return daysToGermination;
-    }
-
-    public void setDaysToGermination(int daysToGermination) {
-        this.daysToGermination = daysToGermination;
     }
 
     public String getAnnualOrPerennial() {
@@ -53,4 +44,5 @@ public class Seed extends AbstractEntity {
     public void setAnnualOrPerennial(String annualOrPerennial) {
         this.annualOrPerennial = annualOrPerennial;
     }
+
 }
