@@ -60,7 +60,8 @@ public class AuthenticationController {
     }
 
     @PostMapping ("/register");
-        public String processRegistrationForm (@ModelAttribute @Valid RegistrationFormDTO registrationFormDTO, Errors errors, HttpServletRequest request ) { //@ModelAttribute is to handle DTO object, @Valid to handle validation
+        public String processRegistrationForm (@ModelAttribute @Valid RegistrationFormDTO registrationFormDTO, Errors errors, HttpServletRequest request ) {
+            //@ModelAttribute is to handle DTO object, @Valid to handle validation
 
             // TODO: send user back to the form if errors are found
 
@@ -90,6 +91,39 @@ public class AuthenticationController {
              userRepository.save(newUser);
              setUserInSession(request.getSession(),newUser);
              return "redirect:view-gardens"; // sends user to the view-garden page (in  GardenController)
+    }
+
+    @GetMapping("/login")
+    public String displayLoginForm(Model model,HttpSession session) {
+            model.addAttribute(new LoginFormDTO());
+            //TODO: send value of loggedIn boolean
+        return "login";
+    }
+
+    @PostMapping ("/login")
+    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO, Errors errors, HttpServletRequest request) {
+
+            if (errors.hasErrors()) {
+                return "login";
+            }
+
+            User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+
+            String password = loginFormDTO.getPassword();
+
+            if (theUser == null || !theUser.isMatchingPassword(password)) {
+
+                errors.rejectValue(
+                        "password",
+                        "login.invalid",
+                        "Wrong credentials. Try again"
+                );
+                return "login";
+            }
+
+
+            setUserInSession(request.getSession(), theUser);
+            return "redirect:view-gardens";
     }
 
 
