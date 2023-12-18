@@ -3,7 +3,7 @@ package org.launchcode.rootstar.models;
 
 import java.util.ArrayList;
 
-public class SearchFunctionsSeed {
+public class SearchFunctions {
 
     public static ArrayList<Garden> findByColumnAndValue(String column, String value, Iterable<Garden> allGardens) {
 
