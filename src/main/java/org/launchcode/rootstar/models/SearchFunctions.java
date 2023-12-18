@@ -49,6 +49,8 @@ public class SearchFunctions {
                 results.add(garden);
             } else if (garden.getPlants().toString().toLowerCase().contains(value.toLowerCase())){
                 results.add(garden);
+            } else if (garden.getSoil().toString().toLowerCase().contains(value.toLowerCase())){
+                results.add(garden);
             }
         }
         return results;
