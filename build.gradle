@@ -25,6 +25,8 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.32'
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.security:spring-security-crypto' //to encrypt the password
+
 }
 
 tasks.named('test') {
