@@ -1,6 +1,7 @@
 import "./App.css";
 import RootAppBar from "./components/AppBar";
-import SeedForm from "./components/Seed";
+import AddSeed from "./components/Seed/AddSeed";
+import ViewSeed from "./components/Seed/ViewSeed";
 
 /*Team to develop JS */
 function App() {
@@ -10,8 +11,16 @@ function App() {
         <RootAppBar />
       </header>
       <body>
-        <p>Placeholder Text</p>
-        <SeedForm />
+        <p>React Classes incorporated into App.js below:</p>
+        <p>AddSeed.js and ViewSeed.js</p>
+        <p>AppBar.js currently has no function other than appearing.</p>
+        <p>
+          Enter Seed data, press "Submit" and hit refresh, and the new seed data
+          should appear below:
+        </p>
+        <AddSeed />
+        <br />
+        <ViewSeed />
       </body>
     </div>
   );

@@ -5,7 +5,7 @@ import { Container, Paper, Button } from "@mui/material";
 
 // SOURCE CODE WITH OTHER EXAMPLES HERE: https://mui.com/material-ui/react-text-field/#form-props
 
-export default function SeedForm() {
+export default function AddSeed() {
   // FOR POST
   // THESE MUST EXACTLY MATCH THE FIELDS CREATED IN THE BACKEND
   const [name, setName] = useState("");
@@ -13,9 +13,6 @@ export default function SeedForm() {
   const [growingZone, setGrowingZone] = useState("");
   const [daysToGermination, setDaysToGermination] = useState("");
   const [annualOrPerennial, setAnnualOrPerennial] = useState("");
-
-  // FOR GET
-  // const [seeds, setSeeds] = useState("");
 
   // EVENT HANDLER FOR SUBMITTING A SEED TO DATABASE
 
@@ -39,22 +36,6 @@ export default function SeedForm() {
     });
   };
 
-  /* GET SEEDS IF NEEDED
-  REPLACE TOP IMPORT STAREMENT WITH 
-  import React, { useEffect, useState } from "react";
-*/
-
-  /*
-  useEffect(() => {
-    fetch("http://localhost:8080/seeds/view-seeds")
-      .then((res) => res.json())
-      .then((result) => {
-        setSeeds(result);
-      });
-  }, []);
-
-*/
-
   return (
     <Box
       component="form"
@@ -64,6 +45,7 @@ export default function SeedForm() {
       noValidate
       autoComplete="off"
     >
+      <h1>ADD A NEW SEED</h1>
       <Container>
         <Paper>
           {/* UPDATE MARGINS*/}
@@ -119,22 +101,6 @@ export default function SeedForm() {
           </Button>
         </Paper>
       </Container>
-      {/* EXAMPLE OF SEEDS RETRIEVED FROM DATA BASE */}
-      {/* <Container>
-        <Paper>
-          <h1>Seeds</h1>
-          {seeds.map((seed) => (
-            <Paper key={seed.id}>
-              Id: {seed.id} <br />
-              Name: {seed.name} <br />
-              Description: {seed.description} <br />
-              Growing Zone: {seed.growingZone} <br />
-              Days to Germination: {seed.daysToGermination} <br />
-              Annual or Perennial: {seed.annualOrPerennial} <br />
-            </Paper>
-          ))}
-        </Paper>
-      </Container> */}
     </Box>
   );
 }
