@@ -48,7 +48,7 @@ public class AuthenticationController {
     }
 
 
-    //TODO: create handlers
+    // create handlers
 
     @GetMapping ("/register")
     public String displayRegistrationForm (Model model, HttpSession session) { //Model class to pass data
@@ -59,11 +59,12 @@ public class AuthenticationController {
         return "register";
     }
 
-    @PostMapping ("/register");
+    @PostMapping ("/register")
         public String processRegistrationForm (@ModelAttribute @Valid RegistrationFormDTO registrationFormDTO, Errors errors, HttpServletRequest request ) {
             //@ModelAttribute is to handle DTO object, @Valid to handle validation
 
-            // TODO: send user back to the form if errors are found
+
+            //  send user back to the form if errors are found
 
             if (errors.hasErrors()) {
                 return "register";
