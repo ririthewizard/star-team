@@ -35,7 +35,7 @@ export default function ViewSeed() {
               Description: {seed.description} <br />
               Growing Zone: {seed.growingZone} <br />
               Days to Germination: {seed.daysToGermination} <br />
-              Annual or Perennial: {seed.annualOrPerennial} <br />
+              Annual or Perennial: {seed.annualOrPerennial} <br /> <br />
             </Paper>
           ))}
         </Paper>

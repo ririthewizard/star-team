@@ -3,32 +3,30 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Container, Paper, Button } from "@mui/material";
 
-export default function AddPlant() {
+export default function AddSoil() {
   // FOR POST
   // THESE MUST EXACTLY MATCH THE FIELDS CREATED IN THE BACKEND
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [growingZone, setGrowingZone] = useState("");
-  const [annualOrPerennial, setAnnualOrPerennial] = useState("");
+  const [type, setType] = useState("");
 
-  // EVENT HANDLER FOR SUBMITTING A PLANT TO DATABASE
+  // EVENT HANDLER FOR SUBMITTING A SOIL TO DATABASE
 
-  const handlePlantSubmission = (e) => {
+  const handleSoilSubmission = (e) => {
     e.preventDefault();
-    let plant = {
+    let soil = {
       name,
       description,
-      growingZone,
-      annualOrPerennial,
+      type,
     };
     // CONSOLE LOG TO CONFIRM THAT DATA IS SAVED TO JSON FORMAT
-    console.log(plant);
-    fetch("http://localhost:8080/plants/add", {
+    console.log(soil);
+    fetch("http://localhost:8080/soil/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(plant),
+      body: JSON.stringify(soil),
     }).then(() => {
-      console.log("New plant added");
+      console.log("New soil added");
     });
   };
 
@@ -44,13 +42,13 @@ export default function AddPlant() {
       <Container>
         <Paper>
           {/* UPDATE MARGINS*/}
-          <h1 style={{ padding: 10 }}>ADD PLANTS</h1>
+          <h1 style={{ padding: 10 }}>ADD SOIL</h1>
           <div>
             {/* NAME */}
             <TextField
               required
               id="outlined-required"
-              label="Plant Name"
+              label="Soil Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -58,7 +56,7 @@ export default function AddPlant() {
             <TextField
               required
               id="outlined-required"
-              label="Plant Description"
+              label="Soil Description"
               helperText="Max of 255 characters"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -67,20 +65,12 @@ export default function AddPlant() {
             <TextField
               required
               id="outlined-required"
-              label="Growing Zone"
-              value={growingZone}
-              onChange={(e) => setGrowingZone(e.target.value)}
-            />
-            {/* ANNUAL OR PERENNIAL */}
-            <TextField
-              required
-              id="outlined-required"
-              label="Annual or Perennial"
-              value={annualOrPerennial}
-              onChange={(e) => setAnnualOrPerennial(e.target.value)}
+              label="Type"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
             />
           </div>
-          <Button variant="contained" onClick={handlePlantSubmission}>
+          <Button variant="contained" onClick={handleSoilSubmission}>
             SUBMIT
           </Button>
         </Paper>
