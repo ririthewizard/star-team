@@ -3,8 +3,10 @@ import Box from "@mui/material/Box";
 import { Container, Paper } from "@mui/material";
 
 export default function ViewSeed() {
+  // Initializes state to an empty array
   const [seeds, setSeeds] = useState([]);
 
+  // Sets seeds to json
   useEffect(() => {
     fetch("http://localhost:8080/seeds/view-seeds")
       .then((res) => res.json())
