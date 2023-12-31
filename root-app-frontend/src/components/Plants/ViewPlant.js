@@ -12,6 +12,9 @@ export default function ViewPlant() {
       .then((res) => res.json())
       .then((result) => {
         setPlants(result);
+      })
+      .catch((error) => {
+        console.error("Error fetching Plant data:", error);
       });
   }, []);
 

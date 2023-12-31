@@ -12,6 +12,9 @@ export default function ViewSoil() {
       .then((res) => res.json())
       .then((result) => {
         setSoils(result);
+      })
+      .catch((error) => {
+        console.error("Error fetching Soil data:", error);
       });
   }, []);
 

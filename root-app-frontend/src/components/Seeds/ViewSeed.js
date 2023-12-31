@@ -12,6 +12,9 @@ export default function ViewSeed() {
       .then((res) => res.json())
       .then((result) => {
         setSeeds(result);
+      })
+      .catch((error) => {
+        console.error("Error fetching Seed data:", error);
       });
   }, []);
 
