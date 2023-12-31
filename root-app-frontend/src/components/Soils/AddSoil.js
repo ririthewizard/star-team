@@ -25,9 +25,15 @@ export default function AddSoil() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(soil),
-    }).then(() => {
-      console.log("New soil added");
-    });
+    })
+      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT SOIL IS ADDED
+      .then(() => {
+        console.log("New soil added");
+      })
+      // ERROR CATCH
+      .catch((error) => {
+        console.error("Error adding soil:", error);
+      });
   };
 
   return (

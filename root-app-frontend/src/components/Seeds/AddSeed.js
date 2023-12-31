@@ -31,9 +31,15 @@ export default function AddSeed() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(seed),
-    }).then(() => {
-      console.log("New seed added");
-    });
+    })
+      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT SEED IS ADDED
+      .then(() => {
+        console.log("New seed added");
+      })
+      // ERROR CATCH
+      .catch((error) => {
+        console.error("Error adding seed:", error);
+      });
   };
 
   return (

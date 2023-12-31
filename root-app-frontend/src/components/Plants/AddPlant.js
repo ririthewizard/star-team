@@ -27,9 +27,15 @@ export default function AddPlant() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(plant),
-    }).then(() => {
-      console.log("New plant added");
-    });
+    })
+      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT PLANT IS ADDED
+      .then(() => {
+        console.log("New plant added");
+      })
+      // ERROR CATCH
+      .catch((error) => {
+        console.error("Error adding plant:", error);
+      });
   };
 
   return (
