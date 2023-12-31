@@ -20,7 +20,7 @@ export default function ViewSoil() {
 
   return (
     <Box
-      component="form"
+      component="body"
       sx={{
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}

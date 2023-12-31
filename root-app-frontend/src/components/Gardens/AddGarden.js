@@ -1,29 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Container, Paper, Button } from "@mui/material";
+import {
+  Container,
+  Paper,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 
 export default function AddGarden() {
   // FOR POST
   // THESE MUST EXACTLY MATCH THE FIELDS CREATED IN THE BACKEND
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-
-  // FOR GET
-  // THESE ARE USED TO PULL DATA FROM SQL. SEE useEffect FUNCTION BELOW
+  // SEED, PLANT AND SOIL OBJECTS
   const [seeds, setSeeds] = useState([]);
   const [plants, setPlants] = useState([]);
   const [soil, setSoil] = useState([]);
+
+  // FOR GET
+  // THESE ARE USED TO PULL DATA FROM SQL. SEE useEffect FUNCTION BELOW
+  const [seedList, setSeedList] = useState([]);
+  const [plantList, setPlantList] = useState([]);
+  const [soilList, setSoilList] = useState([]);
+
+  // FOR SELECTING MULTIPLE SEEDS AND PLANTS
+  const [numSeeds, setNumSeeds] = useState(1);
+  const [numPlants, setNumPlants] = useState(1);
+
+  // HANDLERS FOR SELECTING SEED, SOIL AND PLANT OBJECTS
+
+  const handleSeedChange = (event) => {
+    setSeeds(event.target.value);
+  };
+
+  const handlePlantChange = (event) => {
+    setPlants(event.target.value);
+  };
+
+  const handleSoilChange = (event) => {
+    setSoil(event.target.value);
+  };
+
+  // HANDLERS FOR CHANGING NUMBER OF SEEDS AND PLANTS
+
+  const handleNumSeedsChange = (event) => {
+    setNumSeeds(event.target.value);
+  };
+
+  const handleNumPlantsChange = (event) => {
+    setNumPlants(event.target.value);
+  };
+
+  // HANDLER TO SUBMIT A GARDEN
 
   const handleGardenSubmission = (e) => {
     e.preventDefault();
     let garden = {
       name,
       description,
-      seeds,
-      plants,
-      soil,
+      gardenSeeds: seeds,
+      gardenPlants: plants,
+      gardenSoil: soil,
     };
+
     // CONSOLE LOG TO CONFIRM THAT DATA IS SAVED TO JSON FORMAT
     console.log(garden);
     fetch("http://localhost:8080/gardens/add", {
@@ -41,7 +84,7 @@ export default function AddGarden() {
     fetch("http://localhost:8080/seeds/view-seeds")
       .then((res) => res.json())
       .then((result) => {
-        setSeeds(result);
+        setSeedList(result);
       })
       .catch((error) => {
         console.error("Error fetching Seed data:", error);
@@ -51,7 +94,7 @@ export default function AddGarden() {
     fetch("http://localhost:8080/plants/view-plants")
       .then((res) => res.json())
       .then((result) => {
-        setPlants(result);
+        setPlantList(result);
       })
       .catch((error) => {
         console.error("Error fetching Plant data:", error);
@@ -61,12 +104,13 @@ export default function AddGarden() {
     fetch("http://localhost:8080/soil/view-soils")
       .then((res) => res.json())
       .then((result) => {
-        setSoil(result);
+        setSoilList(result);
       })
       .catch((error) => {
         console.error("Error fetching Soil data:", error);
       });
   }, []);
+  // END useEffect Function
 
   return (
     <Box
@@ -80,13 +124,13 @@ export default function AddGarden() {
       <Container>
         <Paper>
           {/* UPDATE MARGINS*/}
-          <h1 style={{ padding: 10 }}>ADD GARDENS</h1>
+          <h1 style={{ padding: 10 }}>CREATE GARDEN</h1>
           <div>
             {/* NAME */}
             <TextField
               required
               id="outlined-required"
-              label="Plant Name"
+              label="Garden Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -94,31 +138,71 @@ export default function AddGarden() {
             <TextField
               required
               id="outlined-required"
-              label="Plant Description"
+              label="Garden Description"
               helperText="Max of 255 characters"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            {/* GROWING ZONE */}
-            <TextField
-              required
-              id="outlined-required"
-              label="Growing Zone"
-              value={growingZone}
-              onChange={(e) => setGrowingZone(e.target.value)}
-            />
-            {/* ANNUAL OR PERENNIAL */}
-            <TextField
-              required
-              id="outlined-required"
-              label="Annual or Perennial"
-              value={annualOrPerennial}
-              onChange={(e) => setAnnualOrPerennial(e.target.value)}
-            />
           </div>
-          <Button variant="contained" onClick={handlePlantSubmission}>
-            SUBMIT
-          </Button>
+          <form>
+            <h2>SEEDS</h2>
+            <FormControl fullWidth>
+              <InputLabel>Select a Seed</InputLabel>
+              <Select multiple value={seeds} onChange={handleSeedChange}>
+                {seedList.map((aSeed) => (
+                  <MenuItem key={aSeed.id} value={aSeed.id}>
+                    {aSeed.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <TextField
+              label="Number of Seeds"
+              type="number"
+              value={numSeeds}
+              onChange={handleNumSeedsChange}
+            />
+
+            <h2>PLANTS</h2>
+            <FormControl fullWidth>
+              <InputLabel>Select a Plant</InputLabel>
+              <Select multiple value={plants} onChange={handlePlantChange}>
+                {plantList.map((aPlant) => (
+                  <MenuItem key={aPlant.id} value={aPlant.id}>
+                    {aPlant.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <TextField
+              label="Number of Plants"
+              type="number"
+              value={numPlants}
+              onChange={handleNumPlantsChange}
+            />
+
+            <h2>SOILS</h2>
+            <FormControl fullWidth>
+              <InputLabel>Select a Soil</InputLabel>
+              <Select value={soil} onChange={handleSoilChange}>
+                {soilList.map((aSoil) => (
+                  <MenuItem key={aSoil.id} value={aSoil.id}>
+                    {aSoil.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleGardenSubmission}
+            >
+              Build Your Garden
+            </Button>
+          </form>
         </Paper>
       </Container>
     </Box>

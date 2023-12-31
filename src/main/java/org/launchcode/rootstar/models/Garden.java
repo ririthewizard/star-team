@@ -1,59 +1,64 @@
 package org.launchcode.rootstar.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Garden extends AbstractEntity {
 
     @ManyToMany
-    private List<Seed> seeds;
+    @JoinTable(name = "garden_seed",
+            joinColumns = @JoinColumn(name = "garden_id"),
+            inverseJoinColumns = @JoinColumn(name = "seed_id"))
+    private Set<Seed> gardenSeeds;
 
     @ManyToMany
-    private List<Plant> plants;
+    @JoinTable(name = "garden_plant",
+            joinColumns = @JoinColumn(name = "garden_id"),
+            inverseJoinColumns = @JoinColumn(name = "plant_id"))
+    private Set<Plant> gardenPlants;
 
     @ManyToOne
-    private Soil soil;
-
+    @JoinColumn(name = "soil_id")
+    private Soil gardenSoil;
     // CONSTRUCTORS
 
     public Garden(){}
 
-    public Garden(List<Seed> seeds, List<Plant> plants, Soil soil) {
+    public Garden(Set<Seed> seeds, Set<Plant> plants, Soil soil) {
         super();
-        this.seeds = seeds;
-        this.plants = plants;
-        this.soil = soil;
+        this.gardenSeeds = seeds;
+        this.gardenPlants = plants;
+        this.gardenSoil = soil;
     }
 
     // GETTERS AND SETTERS
 
     //TODO: Refactor getters and setters once we establish the many to many relationships
 
-    public List<Seed> getSeeds() {
-        return seeds;
+    public Set<Seed> getSeeds() {
+        return gardenSeeds;
     }
 
-    public void setSeeds(List<Seed> seeds) {
-        this.seeds = seeds;
+    public void setSeeds(Set<Seed> seeds) {
+        this.gardenSeeds = seeds;
     }
 
-    public List<Plant> getPlants() {
-        return plants;
+    public Set<Plant> getPlants() {
+        return gardenPlants;
     }
 
-    public void setPlants(List<Plant> plants) {
-        this.plants = plants;
+    public void setPlants(Set<Plant> plants) {
+        this.gardenPlants = plants;
     }
 
     public Soil getSoil() {
-        return soil;
+        return gardenSoil;
     }
 
     public void setSoil(Soil soil) {
-        this.soil = soil;
+        this.gardenSoil = soil;
     }
 }
