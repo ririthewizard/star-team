@@ -3,22 +3,25 @@ package org.launchcode.rootstar.models;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Garden extends AbstractEntity {
 
-    @ManyToMany(mappedBy = "gardens")
-//    @JoinTable(name = "garden_seed",
-//            joinColumns = @JoinColumn(name = "garden_id"),
-//            inverseJoinColumns = @JoinColumn(name = "seed_id"))
-    private Set<Seed> gardenSeeds;
+    @ManyToMany
+    @JoinTable(
+            name = "garden_seed",
+            joinColumns = @JoinColumn(name = "garden_id"),
+            inverseJoinColumns = @JoinColumn(name = "seed_id")
+    )
+    private List<Seed> gardenSeeds;
 
-    @ManyToMany(mappedBy = "gardens")
-//    @JoinTable(name = "garden_plant",
-//            joinColumns = @JoinColumn(name = "garden_id"),
-//            inverseJoinColumns = @JoinColumn(name = "plant_id"))
-    private Set<Plant> gardenPlants;
+    @ManyToMany
+    @JoinTable(
+            name = "garden_plant",
+            joinColumns = @JoinColumn(name = "garden_id"),
+            inverseJoinColumns = @JoinColumn(name = "plant_id")
+    )
+    private List<Plant> gardenPlants;
 
     @ManyToOne
     @JoinColumn(name = "soil_id")
@@ -27,7 +30,7 @@ public class Garden extends AbstractEntity {
 
     public Garden(){}
 
-    public Garden(Set<Seed> seeds, Set<Plant> plants, Soil soil) {
+    public Garden(List<Seed> seeds, List<Plant> plants, Soil soil) {
         super();
         this.gardenSeeds = seeds;
         this.gardenPlants = plants;
@@ -38,19 +41,19 @@ public class Garden extends AbstractEntity {
 
     //TODO: Refactor getters and setters once we establish the many to many relationships
 
-    public Set<Seed> getSeeds() {
+    public List<Seed> getSeeds() {
         return gardenSeeds;
     }
 
-    public void setSeeds(Set<Seed> seeds) {
+    public void setSeeds(List<Seed> seeds) {
         this.gardenSeeds = seeds;
     }
 
-    public Set<Plant> getPlants() {
+    public List<Plant> getPlants() {
         return gardenPlants;
     }
 
-    public void setPlants(Set<Plant> plants) {
+    public void setPlants(List<Plant> plants) {
         this.gardenPlants = plants;
     }
 

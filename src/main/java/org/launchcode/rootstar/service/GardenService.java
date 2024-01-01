@@ -1,5 +1,6 @@
 package org.launchcode.rootstar.service;
 
+import jakarta.transaction.Transactional;
 import org.launchcode.rootstar.models.Garden;
 import org.launchcode.rootstar.models.data.GardenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class GardenService {
     private final GardenRepository gardenRepository;
 

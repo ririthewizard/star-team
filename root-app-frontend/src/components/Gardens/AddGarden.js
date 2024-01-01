@@ -17,9 +17,9 @@ export default function AddGarden() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   // SEED, PLANT AND SOIL OBJECTS
-  const [seeds, setSeeds] = useState([]);
-  const [plants, setPlants] = useState([]);
-  const [soil, setSoil] = useState([]);
+  const [gardenSeeds, setGardenSeeds] = useState([]);
+  const [gardenPlants, setGardenPlants] = useState([]);
+  const [gardenSoil, setGardenSoil] = useState([]);
 
   // FOR GET
   // THESE ARE USED TO PULL DATA FROM SQL. SEE useEffect FUNCTION BELOW
@@ -28,32 +28,32 @@ export default function AddGarden() {
   const [soilList, setSoilList] = useState([]);
 
   // FOR SELECTING MULTIPLE SEEDS AND PLANTS
-  const [numSeeds, setNumSeeds] = useState(1);
-  const [numPlants, setNumPlants] = useState(1);
+  // const [numSeeds, setNumSeeds] = useState(1);
+  // const [numPlants, setNumPlants] = useState(1);
 
   // HANDLERS FOR SELECTING SEED, SOIL AND PLANT OBJECTS
 
   const handleSeedChange = (event) => {
-    setSeeds(event.target.value);
+    setGardenSeeds(event.target.value);
   };
 
   const handlePlantChange = (event) => {
-    setPlants(event.target.value);
+    setGardenPlants(event.target.value);
   };
 
   const handleSoilChange = (event) => {
-    setSoil(event.target.value);
+    setGardenSoil(event.target.value);
   };
 
   // HANDLERS FOR CHANGING NUMBER OF SEEDS AND PLANTS
 
-  const handleNumSeedsChange = (event) => {
-    setNumSeeds(event.target.value);
-  };
+  // const handleNumSeedsChange = (event) => {
+  //   setNumSeeds(event.target.value);
+  // };
 
-  const handleNumPlantsChange = (event) => {
-    setNumPlants(event.target.value);
-  };
+  // const handleNumPlantsChange = (event) => {
+  //   setNumPlants(event.target.value);
+  // };
 
   // HANDLER TO SUBMIT A GARDEN
 
@@ -62,9 +62,9 @@ export default function AddGarden() {
     let garden = {
       name,
       description,
-      gardenSeeds: seeds,
-      gardenPlants: plants,
-      gardenSoil: soil,
+      gardenSeeds,
+      gardenPlants,
+      gardenSoil,
     };
 
     // CONSOLE LOG TO CONFIRM THAT DATA IS SAVED TO JSON FORMAT
@@ -148,7 +148,7 @@ export default function AddGarden() {
             <h2>SEEDS</h2>
             <FormControl fullWidth>
               <InputLabel>Select a Seed</InputLabel>
-              <Select multiple value={seeds} onChange={handleSeedChange}>
+              <Select multiple value={gardenSeeds} onChange={handleSeedChange}>
                 {seedList.map((aSeed) => (
                   <MenuItem key={aSeed.id} value={aSeed.id}>
                     {aSeed.name}
@@ -157,17 +157,21 @@ export default function AddGarden() {
               </Select>
             </FormControl>
 
-            <TextField
+            {/* <TextField
               label="Number of Seeds"
               type="number"
               value={numSeeds}
               onChange={handleNumSeedsChange}
-            />
+            /> */}
 
             <h2>PLANTS</h2>
             <FormControl fullWidth>
               <InputLabel>Select a Plant</InputLabel>
-              <Select multiple value={plants} onChange={handlePlantChange}>
+              <Select
+                multiple
+                value={gardenPlants}
+                onChange={handlePlantChange}
+              >
                 {plantList.map((aPlant) => (
                   <MenuItem key={aPlant.id} value={aPlant.id}>
                     {aPlant.name}
@@ -176,17 +180,17 @@ export default function AddGarden() {
               </Select>
             </FormControl>
 
-            <TextField
+            {/* <TextField
               label="Number of Plants"
               type="number"
               value={numPlants}
               onChange={handleNumPlantsChange}
-            />
+            /> */}
 
             <h2>SOILS</h2>
             <FormControl fullWidth>
               <InputLabel>Select a Soil</InputLabel>
-              <Select value={soil} onChange={handleSoilChange}>
+              <Select value={gardenSoil} onChange={handleSoilChange}>
                 {soilList.map((aSoil) => (
                   <MenuItem key={aSoil.id} value={aSoil.id}>
                     {aSoil.name}

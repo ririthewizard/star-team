@@ -41,7 +41,6 @@ public class GardenController {
         return ResponseEntity.created(new URI("/gardens/" + savedGarden.getId())).body(savedGarden);
     }
 
-
     @PutMapping("/{id}")
     // Updates garden
     // Returns a 204 No Content response, so user does not need to navigate away from page and can keep updating.

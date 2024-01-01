@@ -1,23 +1,16 @@
 package org.launchcode.rootstar.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Seed extends AbstractEntity {
 
-    @ManyToMany
-    @JoinTable(name = "garden_seed",
-            joinColumns = @JoinColumn(name = "seed_id"),
-            inverseJoinColumns = @JoinColumn(name = "garden_id"))
-    private final Set<Garden> gardens = new HashSet<>();
+    @ManyToMany(mappedBy = "gardenSeeds")
+    private final List<Garden> gardens = new ArrayList<>();
 
     private String growingZone;
 
