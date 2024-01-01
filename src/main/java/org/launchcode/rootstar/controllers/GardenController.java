@@ -27,7 +27,7 @@ public class GardenController {
         return garden.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("view-gardens")
+    @GetMapping(value = "view-gardens", produces = "application/json")
     // Returns all gardens in repository
     public List<Garden> viewGardens() {
         return gardenService.getAllGardens();

@@ -8,7 +8,7 @@ export default function ViewGarden() {
 
   // Sets plants to json
   useEffect(() => {
-    fetch("http://localhost:8080/plants/view-gardens")
+    fetch("http://localhost:8080/gardens/view-gardens")
       .then((res) => res.json())
       .then((result) => {
         setGardens(result);

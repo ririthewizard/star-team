@@ -8,16 +8,16 @@ import java.util.Set;
 @Entity
 public class Garden extends AbstractEntity {
 
-    @ManyToMany
-    @JoinTable(name = "garden_seed",
-            joinColumns = @JoinColumn(name = "garden_id"),
-            inverseJoinColumns = @JoinColumn(name = "seed_id"))
+    @ManyToMany(mappedBy = "gardens")
+//    @JoinTable(name = "garden_seed",
+//            joinColumns = @JoinColumn(name = "garden_id"),
+//            inverseJoinColumns = @JoinColumn(name = "seed_id"))
     private Set<Seed> gardenSeeds;
 
-    @ManyToMany
-    @JoinTable(name = "garden_plant",
-            joinColumns = @JoinColumn(name = "garden_id"),
-            inverseJoinColumns = @JoinColumn(name = "plant_id"))
+    @ManyToMany(mappedBy = "gardens")
+//    @JoinTable(name = "garden_plant",
+//            joinColumns = @JoinColumn(name = "garden_id"),
+//            inverseJoinColumns = @JoinColumn(name = "plant_id"))
     private Set<Plant> gardenPlants;
 
     @ManyToOne

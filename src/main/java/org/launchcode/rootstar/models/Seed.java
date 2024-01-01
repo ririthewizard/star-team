@@ -13,7 +13,10 @@ import java.util.Set;
 @Entity
 public class Seed extends AbstractEntity {
 
-    @ManyToMany(mappedBy = "gardenSeeds")
+    @ManyToMany
+    @JoinTable(name = "garden_seed",
+            joinColumns = @JoinColumn(name = "seed_id"),
+            inverseJoinColumns = @JoinColumn(name = "garden_id"))
     private final Set<Garden> gardens = new HashSet<>();
 
     private String growingZone;
