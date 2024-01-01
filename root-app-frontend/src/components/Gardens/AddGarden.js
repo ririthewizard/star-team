@@ -27,34 +27,6 @@ export default function AddGarden() {
   const [plantList, setPlantList] = useState([]);
   const [soilList, setSoilList] = useState([]);
 
-  // FOR SELECTING MULTIPLE SEEDS AND PLANTS
-  // const [numSeeds, setNumSeeds] = useState(1);
-  // const [numPlants, setNumPlants] = useState(1);
-
-  // HANDLERS FOR SELECTING SEED, SOIL AND PLANT OBJECTS
-
-  const handleSeedChange = (event) => {
-    setGardenSeeds(event.target.value);
-  };
-
-  const handlePlantChange = (event) => {
-    setGardenPlants(event.target.value);
-  };
-
-  const handleSoilChange = (event) => {
-    setGardenSoil(event.target.value);
-  };
-
-  // HANDLERS FOR CHANGING NUMBER OF SEEDS AND PLANTS
-
-  // const handleNumSeedsChange = (event) => {
-  //   setNumSeeds(event.target.value);
-  // };
-
-  // const handleNumPlantsChange = (event) => {
-  //   setNumPlants(event.target.value);
-  // };
-
   // HANDLER TO SUBMIT A GARDEN
 
   const handleGardenSubmission = (e) => {
@@ -69,6 +41,11 @@ export default function AddGarden() {
 
     // CONSOLE LOG TO CONFIRM THAT DATA IS SAVED TO JSON FORMAT
     console.log(garden);
+    console.log(garden.name);
+    console.log(garden.description);
+    console.log(garden.gardenSeeds);
+    console.log(garden.gardenPlants);
+    console.log(garden.gardenSoil);
     fetch("http://localhost:8080/gardens/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -148,7 +125,11 @@ export default function AddGarden() {
             <h2>SEEDS</h2>
             <FormControl fullWidth>
               <InputLabel>Select a Seed</InputLabel>
-              <Select multiple value={gardenSeeds} onChange={handleSeedChange}>
+              <Select
+                multiple
+                value={gardenSeeds}
+                onChange={(e) => setGardenSeeds(e.target.value)}
+              >
                 {seedList.map((aSeed) => (
                   <MenuItem key={aSeed.id} value={aSeed.id}>
                     {aSeed.name}
@@ -157,20 +138,13 @@ export default function AddGarden() {
               </Select>
             </FormControl>
 
-            {/* <TextField
-              label="Number of Seeds"
-              type="number"
-              value={numSeeds}
-              onChange={handleNumSeedsChange}
-            /> */}
-
             <h2>PLANTS</h2>
             <FormControl fullWidth>
               <InputLabel>Select a Plant</InputLabel>
               <Select
                 multiple
                 value={gardenPlants}
-                onChange={handlePlantChange}
+                onChange={(e) => setGardenPlants(e.target.value)}
               >
                 {plantList.map((aPlant) => (
                   <MenuItem key={aPlant.id} value={aPlant.id}>
@@ -180,17 +154,13 @@ export default function AddGarden() {
               </Select>
             </FormControl>
 
-            {/* <TextField
-              label="Number of Plants"
-              type="number"
-              value={numPlants}
-              onChange={handleNumPlantsChange}
-            /> */}
-
             <h2>SOILS</h2>
             <FormControl fullWidth>
               <InputLabel>Select a Soil</InputLabel>
-              <Select value={gardenSoil} onChange={handleSoilChange}>
+              <Select
+                value={gardenSoil}
+                onChange={(e) => setGardenSoil(e.target.value)}
+              >
                 {soilList.map((aSoil) => (
                   <MenuItem key={aSoil.id} value={aSoil.id}>
                     {aSoil.name}

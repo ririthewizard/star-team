@@ -29,7 +29,7 @@ export default function ViewGarden() {
       <h1>GARDEN DATABASE</h1>
       <Container>
         <Paper>
-          <h1>Plants</h1>
+          <h1>Gardens</h1>
           {gardens.map((garden) => (
             <Paper key={garden.id}>
               Id: {garden.id} <br />
