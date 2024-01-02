@@ -35,9 +35,9 @@ export default function ViewGarden() {
               Id: {garden.id} <br />
               Name: {garden.name} <br />
               Description: {garden.description} <br />
-              Seeds: {garden.gardenSeeds} <br />
-              Plants: {garden.gardenPlants} <br />
-              Soil: {garden.gardenSoil} <br />
+              Seeds: {garden.seeds} <br />
+              Plants: {garden.plants} <br />
+              Soil: {garden.soil} <br />
               <br />
             </Paper>
           ))}
