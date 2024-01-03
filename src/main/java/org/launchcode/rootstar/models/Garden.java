@@ -41,27 +41,27 @@ public class Garden extends AbstractEntity {
 
     //TODO: Refactor getters and setters once we establish the many to many relationships
 
-    public List<Seed> getSeeds() {
+    public List<Seed> getGardenSeeds() {
         return gardenSeeds;
     }
 
-    public void setSeeds(List<Seed> seeds) {
+    public void setGardenSeeds(List<Seed> seeds) {
         this.gardenSeeds = seeds;
     }
 
-    public List<Plant> getPlants() {
+    public List<Plant> getGardenPlants() {
         return gardenPlants;
     }
 
-    public void setPlants(List<Plant> plants) {
+    public void setGardenPlants(List<Plant> plants) {
         this.gardenPlants = plants;
     }
 
-    public Soil getSoil() {
+    public Soil getGardenSoil() {
         return gardenSoil;
     }
 
-    public void setSoil(Soil soil) {
+    public void setGardenSoil(Soil soil) {
         this.gardenSoil = soil;
     }
 }

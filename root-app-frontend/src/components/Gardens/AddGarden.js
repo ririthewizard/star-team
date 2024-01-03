@@ -34,9 +34,11 @@ export default function AddGarden() {
     let garden = {
       name,
       description,
-      gardenSeeds,
-      gardenPlants,
-      gardenSoil,
+      gardenSeeds: seedList.filter((seed) => gardenSeeds.includes(seed.id)),
+      gardenPlants: plantList.filter((plant) =>
+        gardenPlants.includes(plant.id)
+      ),
+      gardenSoil: soilList.find((soil) => soil.id === gardenSoil),
     };
 
     // CONSOLE LOG TO CONFIRM THAT DATA IS SAVED TO JSON FORMAT

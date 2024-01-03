@@ -2,6 +2,7 @@ package org.launchcode.rootstar.controllers;
 
 import org.launchcode.rootstar.models.Garden;
 import org.launchcode.rootstar.models.Plant;
+import org.launchcode.rootstar.models.data.GardenRepository;
 import org.launchcode.rootstar.service.GardenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -19,6 +21,9 @@ public class GardenController {
 
     @Autowired
     private GardenService gardenService;
+
+    @Autowired
+    private GardenRepository gardenRepository;
 
     // GET MAPPING
     @GetMapping("/{id}")
@@ -37,8 +42,15 @@ public class GardenController {
     // POST MAPPING
     @PostMapping("/add")
     // Returns a response entity with Uniform Resource Identifier with new garden ID and Body
-    public ResponseEntity<Garden> addGarden(@RequestBody Garden garden) throws URISyntaxException {
-        Garden savedGarden = gardenService.addGarden(garden);
+    public ResponseEntity<Garden> addGarden(@RequestBody Map<String, Object> garden) throws URISyntaxException {
+        String name = (String) garden.get("name");
+        String description = (String) garden.get("description");
+        int soilId = (int) garden.get("gardenSoil");
+        List<Integer> plants = (List<Integer>) garden.get("gardenPlants");
+        List<Integer> seeds = (List<Integer>) garden.get("gardenSeeds");
+
+        Garden savedGarden = gardenService.addGarden(name, description, soilId, plants, seeds);
+
         return ResponseEntity.created(new URI("/gardens/" + savedGarden.getId())).body(savedGarden);
     }
 
