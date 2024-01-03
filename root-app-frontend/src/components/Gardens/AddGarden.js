@@ -34,6 +34,7 @@ export default function AddGarden() {
     let garden = {
       name,
       description,
+      // THESE PULL THE FULL ARRAY
       gardenSeeds: seedList.filter((seed) => gardenSeeds.includes(seed.id)),
       gardenPlants: plantList.filter((plant) =>
         gardenPlants.includes(plant.id)

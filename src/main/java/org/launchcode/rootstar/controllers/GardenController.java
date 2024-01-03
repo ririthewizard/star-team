@@ -45,12 +45,11 @@ public class GardenController {
     public ResponseEntity<Garden> addGarden(@RequestBody Map<String, Object> garden) throws URISyntaxException {
         String name = (String) garden.get("name");
         String description = (String) garden.get("description");
-        int soilId = (int) garden.get("gardenSoil");
+        Integer soilId = (Integer) garden.get("gardenSoil");
         List<Integer> plants = (List<Integer>) garden.get("gardenPlants");
         List<Integer> seeds = (List<Integer>) garden.get("gardenSeeds");
 
         Garden savedGarden = gardenService.addGarden(name, description, soilId, plants, seeds);
-
         return ResponseEntity.created(new URI("/gardens/" + savedGarden.getId())).body(savedGarden);
     }
 
