@@ -34,21 +34,13 @@ export default function AddGarden() {
     let garden = {
       name,
       description,
-      // THESE PULL THE FULL ARRAY
-      gardenSeeds: seedList.filter((seed) => gardenSeeds.includes(seed.id)),
-      gardenPlants: plantList.filter((plant) =>
-        gardenPlants.includes(plant.id)
-      ),
-      gardenSoil: soilList.find((soil) => soil.id === gardenSoil),
+      gardenSeeds,
+      gardenPlants,
+      gardenSoil,
     };
 
     // CONSOLE LOG TO CONFIRM THAT DATA IS SAVED TO JSON FORMAT
     console.log(garden);
-    console.log(garden.name);
-    console.log(garden.description);
-    console.log(garden.gardenSeeds);
-    console.log(garden.gardenPlants);
-    console.log(garden.gardenSoil);
     fetch("http://localhost:8080/gardens/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

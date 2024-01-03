@@ -35,9 +35,11 @@ export default function ViewGarden() {
               Id: {garden.id} <br />
               Name: {garden.name} <br />
               Description: {garden.description} <br />
-              Seeds: {garden.seeds} <br />
-              Plants: {garden.plants} <br />
-              Soil: {garden.soil} <br />
+              {/* TODO: Update below fields to display contents better 
+                  Currently they display raw JSON data. */}
+              Seeds: {JSON.stringify(garden.gardenSeeds)} <br />
+              Plants: {JSON.stringify(garden.gardenPlants)} <br />
+              Soil: {JSON.stringify(garden.gardenSoil)} <br />
               <br />
             </Paper>
           ))}

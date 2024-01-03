@@ -1,7 +1,8 @@
 package org.launchcode.rootstar.controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.launchcode.rootstar.models.Garden;
-import org.launchcode.rootstar.models.Plant;
 import org.launchcode.rootstar.models.data.GardenRepository;
 import org.launchcode.rootstar.service.GardenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class GardenController {
     @Autowired
     private GardenRepository gardenRepository;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     // GET MAPPING
     @GetMapping("/{id}")
     // Returns 200 OK HTTP Response (headers, status, and body) for garden if found, 404 if not
@@ -45,9 +49,12 @@ public class GardenController {
     public ResponseEntity<Garden> addGarden(@RequestBody Map<String, Object> garden) throws URISyntaxException {
         String name = (String) garden.get("name");
         String description = (String) garden.get("description");
-        Integer soilId = (Integer) garden.get("gardenSoil");
-        List<Integer> plants = (List<Integer>) garden.get("gardenPlants");
-        List<Integer> seeds = (List<Integer>) garden.get("gardenSeeds");
+
+        // Basically Jackson, the Java library which deserializes the JSON objects, needs to be explictly told
+        // what type they are. That is what these object mapper methods accomplish.
+        Integer soilId = objectMapper.convertValue(garden.get("gardenSoil"), Integer.class);
+        List<Integer> plants = objectMapper.convertValue(garden.get("gardenPlants"), new TypeReference<List<Integer>>() {});
+        List<Integer> seeds = objectMapper.convertValue(garden.get("gardenSeeds"), new TypeReference<List<Integer>>() {});
 
         Garden savedGarden = gardenService.addGarden(name, description, soilId, plants, seeds);
         return ResponseEntity.created(new URI("/gardens/" + savedGarden.getId())).body(savedGarden);

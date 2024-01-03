@@ -38,9 +38,6 @@ public class Garden extends AbstractEntity {
     }
 
     // GETTERS AND SETTERS
-
-    //TODO: Refactor getters and setters once we establish the many to many relationships
-
     public List<Seed> getGardenSeeds() {
         return gardenSeeds;
     }
