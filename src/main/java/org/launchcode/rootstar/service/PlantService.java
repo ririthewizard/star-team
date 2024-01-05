@@ -35,8 +35,6 @@ public class PlantService {
         return plantRepository.findAll();
     }
 
-    // TODO: make UPDATE functionality for Plant
-
     public void deletePlant(int id) {
         plantRepository.deleteById(id);
     }

@@ -9,8 +9,7 @@ import java.util.List;
 @Entity
 public class Soil extends AbstractEntity {
 
-    @OneToMany(mappedBy = "soil")
-    // use @JoinColumn if errors once app is working
+    @OneToMany(mappedBy = "gardenSoil")
     private final List<Garden> gardens = new ArrayList<>();
 
     private String type;

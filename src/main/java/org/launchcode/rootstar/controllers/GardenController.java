@@ -1,6 +1,9 @@
 package org.launchcode.rootstar.controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.launchcode.rootstar.models.Garden;
+import org.launchcode.rootstar.models.data.GardenRepository;
 import org.launchcode.rootstar.service.GardenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +22,12 @@ public class GardenController {
 
     @Autowired
     private GardenService gardenService;
+
+    @Autowired
+    private GardenRepository gardenRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     // GET MAPPING
     @GetMapping("/{id}")
@@ -36,11 +46,19 @@ public class GardenController {
     // POST MAPPING
     @PostMapping("/add")
     // Returns a response entity with Uniform Resource Identifier with new garden ID and Body
-    public ResponseEntity<Garden> addGarden(@RequestBody Garden garden) throws URISyntaxException {
-        Garden savedGarden = gardenService.addGarden(garden);
+    public ResponseEntity<Garden> addGarden(@RequestBody Map<String, Object> garden) throws URISyntaxException {
+        String name = (String) garden.get("name");
+        String description = (String) garden.get("description");
+
+        // Basically Jackson, the Java library which deserializes the JSON objects, needs to be explictly told
+        // what type they are. That is what these object mapper methods accomplish.
+        Integer soilId = objectMapper.convertValue(garden.get("gardenSoil"), Integer.class);
+        List<Integer> plants = objectMapper.convertValue(garden.get("gardenPlants"), new TypeReference<List<Integer>>() {});
+        List<Integer> seeds = objectMapper.convertValue(garden.get("gardenSeeds"), new TypeReference<List<Integer>>() {});
+
+        Garden savedGarden = gardenService.addGarden(name, description, soilId, plants, seeds);
         return ResponseEntity.created(new URI("/gardens/" + savedGarden.getId())).body(savedGarden);
     }
-
 
     @PutMapping("/{id}")
     // Updates garden
