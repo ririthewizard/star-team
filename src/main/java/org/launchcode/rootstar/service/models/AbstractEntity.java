@@ -1,4 +1,4 @@
-package org.launchcode.rootstar.models;
+package org.launchcode.rootstar.service.models;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -1,4 +1,4 @@
-package org.launchcode.rootstar.models.dto;
+package org.launchcode.rootstar.service.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

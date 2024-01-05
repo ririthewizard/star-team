@@ -1,6 +1,6 @@
-package org.launchcode.rootstar.models.data;
+package org.launchcode.rootstar.service.models.data;
 
-import org.launchcode.rootstar.models.User;
+import org.launchcode.rootstar.service.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

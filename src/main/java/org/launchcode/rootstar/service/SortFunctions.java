@@ -1,8 +1,7 @@
-package org.launchcode.rootstar.models;
+package org.launchcode.rootstar.service;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import org.launchcode.rootstar.models.data.GardenRepository;
+import org.launchcode.rootstar.service.models.Garden;
+import org.launchcode.rootstar.service.models.data.GardenRepository;
 import org.springframework.data.domain.Sort;
 
 import java.util.*;
