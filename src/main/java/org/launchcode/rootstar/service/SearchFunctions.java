@@ -1,5 +1,7 @@
-package org.launchcode.rootstar.models;
+package org.launchcode.rootstar.service;
 
+
+import org.launchcode.rootstar.models.Garden;
 
 import java.util.ArrayList;
 

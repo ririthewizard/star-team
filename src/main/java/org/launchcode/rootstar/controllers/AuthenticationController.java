@@ -59,7 +59,7 @@ public class AuthenticationController {
         return "register";
     }
 
-    @PostMapping ("/register");
+    @PostMapping ("/register")
         public String processRegistrationForm (@ModelAttribute @Valid RegistrationFormDTO registrationFormDTO, Errors errors, HttpServletRequest request ) {
             //@ModelAttribute is to handle DTO object, @Valid to handle validation
 
