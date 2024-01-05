@@ -8,8 +8,8 @@ import AddSoil from "./components/Soils/AddSoil";
 import ViewSoil from "./components/Soils/ViewSoil";
 import AddGarden from "./components/Gardens/AddGarden";
 import ViewGarden from "./components/Gardens/ViewGarden";
+import DeleteGarden from "./components/Gardens/DeleteGarden";
 import { Link, Routes, Route } from "react-router-dom";
-
 
 function App() {
   return (
@@ -42,6 +42,9 @@ function App() {
           <li>
             <Link to="/gardens/view-gardens">View Gardens</Link>
           </li>
+          <li>
+            <Link to="/gardens/delete">Delete a Garden</Link>
+          </li>
         </ul>
       </nav>
       <Routes>
@@ -61,6 +64,8 @@ function App() {
         <Route path="/gardens/add" element={<AddGarden />} />
 
         <Route path="/gardens/view-gardens" element={<ViewGarden />} />
+
+        <Route path="/gardens/delete" element={<DeleteGarden />} />
       </Routes>
     </>
     // <div>
@@ -70,7 +75,6 @@ function App() {
     //   <body>
     //   </body>
     // </div>
-
   );
 }
 

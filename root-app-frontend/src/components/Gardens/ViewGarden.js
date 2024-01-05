@@ -26,7 +26,7 @@ export default function ViewGarden() {
       noValidate
       autoComplete="off"
     >
-      <h1>GARDEN DATABASE</h1>
+      <h1 style={{ padding: 10 }}>GARDEN DATABASE</h1>
       <Container>
         <Paper>
           <h1>Gardens</h1>
