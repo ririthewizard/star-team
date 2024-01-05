@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Plant extends AbstractEntity {
 
-    @ManyToMany(mappedBy = "plants")
+    @ManyToMany(mappedBy = "gardenPlants")
     private final List<Garden> gardens = new ArrayList<>();
 
     private String growingZone;

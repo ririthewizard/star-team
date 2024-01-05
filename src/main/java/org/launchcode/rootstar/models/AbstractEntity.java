@@ -44,10 +44,10 @@ public abstract class AbstractEntity {
         this.description = description;
     }
 
-    // TODO: Refactor toString to include description.
     @Override
     public String toString() {
-        return name;
+        return "Name: " + name + "\n" +
+                "Description: " + description;
     }
 
     @Override
