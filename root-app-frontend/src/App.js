@@ -10,6 +10,7 @@ import AddGarden from "./components/Gardens/AddGarden";
 import ViewGarden from "./components/Gardens/ViewGarden";
 import { Link, Routes, Route } from "react-router-dom";
 
+
 function App() {
   return (
     // Reminder: <> is fragment within which the <ROUTES> Hooks are wrapped.
@@ -69,6 +70,7 @@ function App() {
     //   <body>
     //   </body>
     // </div>
+
   );
 }
 

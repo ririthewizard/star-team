@@ -33,9 +33,11 @@ public class SearchFunctions {
         if (fieldName.equals("name")){
             fieldValue = garden.getName();
         } else if (fieldName.equals("seeds")) {
+
             fieldValue = garden.getGardenSeeds().toString();
         } else if (fieldName.equals("plants")) {
             fieldValue = garden.getGardenPlants().toString();
+
         }
 
         return fieldValue;
@@ -47,11 +49,13 @@ public class SearchFunctions {
         for (Garden garden: allGardens){
             if (garden.getName().toLowerCase().contains(value.toLowerCase())){
                 results.add(garden);
+
             } else if (garden.getGardenSeeds().toString().toLowerCase().contains(value.toLowerCase())){
                 results.add(garden);
             } else if (garden.getGardenPlants().toString().toLowerCase().contains(value.toLowerCase())){
                 results.add(garden);
             } else if (garden.getGardenSoil().toString().toLowerCase().contains(value.toLowerCase())){
+
                 results.add(garden);
             }
         }
