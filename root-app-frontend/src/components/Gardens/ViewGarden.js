@@ -6,13 +6,14 @@ export default function ViewGarden() {
   // Initializes state to an empty array
   const [gardens, setGardens] = useState([]);
 
-  // Sets plants to json
+  // Sets gardens to json
   useEffect(() => {
     fetch("http://localhost:8080/gardens/view-gardens")
       .then((res) => res.json())
       .then((result) => {
         setGardens(result);
       })
+      // ERROR CATCH
       .catch((error) => {
         console.error("Error fetching Garden data:", error);
       });

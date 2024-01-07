@@ -11,35 +11,28 @@ import {
 } from "@mui/material";
 
 export default function DeleteGarden() {
-  // Initializes state to an empty array
-
-  // FOR
+  // GETS GARDENS
   const [gardens, setGardens] = useState([]);
 
-  //
+  // FOR SELECTING A GARDEN TO DELETE
+  const [selectedGardenId, setSelectedGardenId] = useState("");
 
-  const handleDeleteGardenSubmission = (e) => {
-    e.preventDefault();
-    let garden = {
-      name,
-      description,
-      gardenSeeds,
-      gardenPlants,
-      gardenSoil,
-    };
-
-    // CONSOLE LOG TO CONFIRM THAT DATA IS SAVED TO JSON FORMAT
-    console.log(garden);
-    fetch("http://localhost:8080/gardens/view", {
+  const handleDeleteGardenSubmission = () => {
+    fetch(`http://localhost:8080/gardens/${selectedGardenId}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(garden),
-    }).then(() => {
-      console.log("Garden Deleted");
-    });
+    })
+      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT GARDEN IS DELETED
+      .then(() => {
+        console.log("Garden Deleted");
+      })
+      // ERROR CATCH
+      .catch((error) => {
+        console.error("Error deleting Garden:", error);
+      });
   };
 
-  // Sets plants to json
+  // Sets gardens to json
   useEffect(() => {
     fetch("http://localhost:8080/gardens/view-gardens")
       .then((res) => res.json())
@@ -67,9 +60,8 @@ export default function DeleteGarden() {
             <FormControl fullWidth>
               <InputLabel>Select a Garden</InputLabel>
               <Select
-                multiple
-                value={gardens}
-                onChange={(e) => setGardens(e.target.value)}
+                value={selectedGardenId}
+                onChange={(e) => setSelectedGardenId(e.target.value)}
               >
                 {gardens.map((aGarden) => (
                   <MenuItem key={aGarden.id} value={aGarden.id}>
@@ -83,7 +75,7 @@ export default function DeleteGarden() {
               color="primary"
               onClick={handleDeleteGardenSubmission}
             >
-              Build Your Garden
+              Delete Garden :(
             </Button>
           </form>
         </Paper>

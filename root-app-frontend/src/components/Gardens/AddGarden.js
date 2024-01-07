@@ -45,9 +45,15 @@ export default function AddGarden() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(garden),
-    }).then(() => {
-      console.log("New garden added");
-    });
+    })
+      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT GARDEN IS ADDED
+      .then(() => {
+        console.log("New garden added");
+      })
+      // ERROR CATCH
+      .catch((error) => {
+        console.error("Error adding Garden:", error);
+      });
   };
 
   // THIS LONG useEffect FUNCTION PULLS DATA FROM SQL
