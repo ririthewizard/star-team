@@ -20,7 +20,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
 
     /* whitelist pages anyone can access */
     // TODO: check what pages will be whitelisted and their routs
-    private static final List <String> whitelist = Arrays.asList("/welcome", "/register","/login","/css", "/images");
+    private static final List <String> whitelist = Arrays.asList("/register","/login");
 
     private static  boolean isWhitelisted (String path) {
         for (String pathRoot: whitelist) {
@@ -36,7 +36,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         if (isWhitelisted(request.getRequestURI())) {
-            return false;
+            return true;
         }
 
         HttpSession session = request.getSession();
