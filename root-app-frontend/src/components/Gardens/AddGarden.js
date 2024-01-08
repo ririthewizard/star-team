@@ -125,7 +125,7 @@ export default function AddGarden() {
           <form>
             <h2>SEEDS</h2>
             <FormControl fullWidth>
-              <InputLabel>Select a Seed</InputLabel>
+              <InputLabel>Select Seeds:</InputLabel>
               <Select
                 multiple
                 value={gardenSeeds}
@@ -141,7 +141,7 @@ export default function AddGarden() {
 
             <h2>PLANTS</h2>
             <FormControl fullWidth>
-              <InputLabel>Select a Plant</InputLabel>
+              <InputLabel>Select Plants:</InputLabel>
               <Select
                 multiple
                 value={gardenPlants}
