@@ -10,11 +10,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 // import AssignmentIcon from '@mui/icons-material/Assignment';
 
 const Login = () => {
+
+    const paperStyle={ padding: '20px', width: '280px' };
+    const avatarStyle={backgroundColor:'#38c4cbeb'}
   return (
     <Grid style={{ height: '70vh' }}>
-      <Paper elevation={10} style={{ padding: '20px', width: '280px' }}>
+      <Paper elevation={10} style={paperStyle}>
         <Grid align="center">
-        <Avatar> <LockOutlinedIcon></LockOutlinedIcon> </Avatar>
+        <Avatar style={avatarStyle}> <LockOutlinedIcon></LockOutlinedIcon> </Avatar>
         
         <h2>Sign In</h2>
         </Grid>
