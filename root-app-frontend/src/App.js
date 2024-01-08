@@ -8,7 +8,7 @@ import AddSoil from "./components/Soils/AddSoil";
 import ViewSoil from "./components/Soils/ViewSoil";
 import AddGarden from "./components/Gardens/AddGarden";
 import ViewGarden from "./components/Gardens/ViewGarden";
-import Login from "./components/LogIn";
+import Login from "./components/Login";
 import { Link, Routes, Route } from "react-router-dom";
 
 
