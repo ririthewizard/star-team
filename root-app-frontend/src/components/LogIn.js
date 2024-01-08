@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Paper,Avatar,TextField } from '@mui/material';
+import { Grid, Paper,Avatar,TextField, Button } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -36,7 +36,9 @@ const Login = () => {
           labelPlacement="right"
         />
 
-   
+<Button typr='submit' color='primary' variant='contained' fullWidth>Sign In</Button>   
+
+        
         
       </Paper>
     </Grid>
