@@ -1,6 +1,11 @@
 import React from 'react';
 import { Grid, Paper,Avatar,TextField } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
+
+
 
 // import { green, pink } from '@mui/material/colors';
 // import Avatar from '@mui/material/Avatar';
@@ -13,6 +18,7 @@ const Login = () => {
 
     const paperStyle={ padding: '20px', width: '280px' };
     const avatarStyle={backgroundColor:'#38c4cbeb'}
+    
   return (
     <Grid style={{ height: '70vh' }}>
       <Paper elevation={10} style={paperStyle}>
@@ -23,7 +29,14 @@ const Login = () => {
         </Grid>
         <TextField label='Username' placeholder='Enter Username'required></TextField>
         <TextField label='Password' placeholder='Enter Password'type='password' required></TextField>
+        <FormControlLabel
+          value="bottom"
+          control={<Checkbox />}
+          label="Remember me"
+          labelPlacement="right"
+        />
 
+   
         
       </Paper>
     </Grid>
