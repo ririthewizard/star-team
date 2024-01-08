@@ -8,6 +8,7 @@ import AddSoil from "./components/Soils/AddSoil";
 import ViewSoil from "./components/Soils/ViewSoil";
 import AddGarden from "./components/Gardens/AddGarden";
 import ViewGarden from "./components/Gardens/ViewGarden";
+import Login from "./components/LogIn";
 import { Link, Routes, Route } from "react-router-dom";
 
 
@@ -15,6 +16,12 @@ function App() {
   return (
     // Reminder: <> is fragment within which the <ROUTES> Hooks are wrapped.
     <>
+
+    <div class name ="App">
+      <h1> The garden builder application </h1>
+      <Login/>
+    </div>
+    
       <nav>
         <ul>
           <li>
