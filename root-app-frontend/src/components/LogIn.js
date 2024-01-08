@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Paper,Avatar } from '@mui/material';
+import { Grid, Paper,Avatar,TextField } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 // import { green, pink } from '@mui/material/colors';
@@ -21,6 +21,8 @@ const Login = () => {
         
         <h2>Sign In</h2>
         </Grid>
+        <TextField label='Username' placeholder='Enter Username'required></TextField>
+        <TextField label='Password' placeholder='Enter Password'type='password' required></TextField>
 
         
       </Paper>
