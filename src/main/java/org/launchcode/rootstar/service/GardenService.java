@@ -38,7 +38,8 @@ public class GardenService {
     // CRUD operations for Garden class
 
     // CREATE
-    public Garden addGarden(String name, String description, int soilId, List<Integer> plants, List<Integer> seeds) {
+    public Garden addGarden(String name, String description, int soilId,
+                            List<Integer> plants, List<Integer> seeds) {
         Garden garden = new Garden();
         garden.setName(name);
         garden.setDescription(description);
@@ -66,14 +67,23 @@ public class GardenService {
     }
 
     // UPDATE
-    public Garden updateGarden(int id, Garden newGarden) {
+    public Garden updateGarden(int id, String name, String description, int soilId,
+                               List<Integer> plants, List<Integer> seeds) {
         Garden updatedGarden = gardenRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Garden with id " + id + " not found"));
-        updatedGarden.setName(newGarden.getName());
-        updatedGarden.setDescription(newGarden.getDescription());
-        updatedGarden.setGardenSeeds(newGarden.getGardenSeeds());
-        updatedGarden.setGardenPlants(newGarden.getGardenPlants());
-        updatedGarden.setGardenSoil(newGarden.getGardenSoil());
+        updatedGarden.setName(name);
+        updatedGarden.setDescription(description);
+        Optional<Soil> result = soilRepository.findById(soilId);
+        if (result.isEmpty()) {
+            System.out.println("Invalid soil: " + soilId);
+        } else {
+            Soil soil = result.get();
+            updatedGarden.setGardenSoil(soil);
+        }
+        List<Seed> seedObj = (List<Seed>) seedRepository.findAllById(seeds);
+        updatedGarden.setGardenSeeds(seedObj);
+        List<Plant> plantObj = (List<Plant>) plantRepository.findAllById(plants);
+        updatedGarden.setGardenPlants(plantObj);
         return gardenRepository.save(updatedGarden);
     }
 
