@@ -13,6 +13,7 @@ export default function ViewSeed() {
       .then((result) => {
         setSeeds(result);
       })
+      // ERROR CATCH
       .catch((error) => {
         console.error("Error fetching Seed data:", error);
       });

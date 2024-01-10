@@ -8,14 +8,16 @@ import AddSoil from "./components/Soils/AddSoil";
 import ViewSoil from "./components/Soils/ViewSoil";
 import AddGarden from "./components/Gardens/AddGarden";
 import ViewGarden from "./components/Gardens/ViewGarden";
+import DeleteGarden from "./components/Gardens/DeleteGarden";
+import EditGarden from "./components/Gardens/EditGarden";
 import { Link, Routes, Route } from "react-router-dom";
-
 
 function App() {
   return (
     // Reminder: <> is fragment within which the <ROUTES> Hooks are wrapped.
     <>
       <nav>
+        <h2>Menu</h2>
         <ul>
           <li>
             {/*Link is like an anchor tag <a>, and to= is like href*/}
@@ -42,6 +44,12 @@ function App() {
           <li>
             <Link to="/gardens/view-gardens">View Gardens</Link>
           </li>
+          <li>
+            <Link to="/gardens/delete">Delete a Garden</Link>
+          </li>
+          <li>
+            <Link to="gardens/edit">Update a Garden</Link>
+          </li>
         </ul>
       </nav>
       <Routes>
@@ -61,6 +69,10 @@ function App() {
         <Route path="/gardens/add" element={<AddGarden />} />
 
         <Route path="/gardens/view-gardens" element={<ViewGarden />} />
+
+        <Route path="/gardens/delete" element={<DeleteGarden />} />
+
+        <Route path="/gardens/edit" element={<EditGarden />} />
       </Routes>
     </>
     // <div>
@@ -70,7 +82,6 @@ function App() {
     //   <body>
     //   </body>
     // </div>
-
   );
 }
 

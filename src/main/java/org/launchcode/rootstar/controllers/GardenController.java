@@ -60,11 +60,20 @@ public class GardenController {
         return ResponseEntity.created(new URI("/gardens/" + savedGarden.getId())).body(savedGarden);
     }
 
+    // PUT MAPPING
+    // TODO: Refactor put mapping and post mapping methods to make it more DRY
     @PutMapping("/{id}")
     // Updates garden
     // Returns a 204 No Content response, so user does not need to navigate away from page and can keep updating.
-    public ResponseEntity<Void> updateGarden(@PathVariable int id, @RequestBody Garden newGarden) {
-        gardenService.updateGarden(id, newGarden);
+    public ResponseEntity<Void> updateGarden(@PathVariable int id, @RequestBody Map<String, Object> garden) {
+        String name = (String) garden.get("name");
+        String description = (String) garden.get("description");
+        // See @PostMapping method above
+        Integer soilId = objectMapper.convertValue(garden.get("gardenSoil"), Integer.class);
+        List<Integer> plants = objectMapper.convertValue(garden.get("gardenPlants"), new TypeReference<List<Integer>>() {});
+        List<Integer> seeds = objectMapper.convertValue(garden.get("gardenSeeds"), new TypeReference<List<Integer>>() {});
+
+        Garden updatedGarden = gardenService.updateGarden(id, name, description, soilId, plants, seeds);
         return ResponseEntity.noContent().build();
     }
 
