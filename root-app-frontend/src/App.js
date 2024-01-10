@@ -17,6 +17,7 @@ function App() {
     // Reminder: <> is fragment within which the <ROUTES> Hooks are wrapped.
     <>
       <nav>
+        <h2>Menu</h2>
         <ul>
           <li>
             {/*Link is like an anchor tag <a>, and to= is like href*/}

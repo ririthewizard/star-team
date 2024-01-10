@@ -18,6 +18,7 @@ export default function ViewGarden() {
         console.error("Error fetching Garden data:", error);
       });
   }, []);
+
   return (
     <Box
       component="body"
@@ -33,14 +34,40 @@ export default function ViewGarden() {
           <h1>Gardens</h1>
           {gardens.map((garden) => (
             <Paper key={garden.id}>
+              <h4>{garden.name} Details:</h4>
               Id: {garden.id} <br />
-              Name: {garden.name} <br />
               Description: {garden.description} <br />
-              {/* TODO: Update below fields to display contents better 
-                  Currently they display raw JSON data. */}
-              Seeds: {JSON.stringify(garden.gardenSeeds)} <br />
-              Plants: {JSON.stringify(garden.gardenPlants)} <br />
-              Soil: {JSON.stringify(garden.gardenSoil)} <br />
+              Seeds:
+              {garden.gardenSeeds.map((seed) => (
+                <div key={seed.id}>
+                  <ul>
+                    <li>Name: {seed.name}</li>
+                    <li>Description: {seed.description}</li>
+                    <li>Growing Zone:{seed.growingZone}</li>
+                    <li>Days to Germination: {seed.daysToGermination}</li>
+                    <li>Annual or Perennial: {seed.annualOrPerennial}</li>
+                  </ul>
+                </div>
+              ))}
+              Plants:
+              {garden.gardenPlants.map((plant) => (
+                <div key={garden.id}>
+                  <ul>
+                    <li>Name: {plant.name}</li>
+                    <li>Description: {plant.description}</li>
+                    <li>Growing Zone:{plant.growingZone}</li>
+                    <li>Annual or Perennial: {plant.annualOrPerennial}</li>
+                  </ul>
+                </div>
+              ))}
+              Soil:
+              <div>
+                <ul>
+                  <li>{garden.gardenSoil.name}</li>
+                  <li>{garden.gardenSoil.description}</li>
+                  <li>{garden.gardenSoil.type}</li>
+                </ul>
+              </div>
               <br />
             </Paper>
           ))}
