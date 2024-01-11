@@ -1,8 +1,9 @@
 package org.launchcode.rootstar.service;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.mysql.cj.xdevapi.JsonArray;
 import org.apache.tomcat.util.json.JSONParser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 
 public class WeatherService {
 
-    public static JSONPObject getWeatherData(int locationKey){
+    public static JSONObject getWeatherData(int locationKey){
         //get postal code locationKey from API
         JsonArray locationData = getLocationData(locationKey);
     }
@@ -44,7 +45,9 @@ public class WeatherService {
 
                 //parse JSON string into JSON obj
                 JSONParser parser = new JSONParser();
-                JSONPObject resultsJsonObj = (JSONPObject) parser.parse(String.valueOf(resultJson));
+                JSONObject resultsJsonObj = (JSONObject) parser.parse(String.valueOf(resultJson));
+
+                JSONArray locationData = (JSONArray) resultsJsonObj.get("results");
             }
         }catch(Exception e){
             e.printStackTrace();
