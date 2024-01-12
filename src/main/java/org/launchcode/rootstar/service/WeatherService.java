@@ -51,6 +51,8 @@ public class WeatherService {
             //retrieve five day data
             JSONObject fiveDay = (JSONObject) resultsJsonObj.get("DailyForecasts");
 
+            JSONObject weatherData = new JSONObject();
+            weatherData.put("five_day", fiveDay);
 
         } catch(Exception e){
             e.printStackTrace();
