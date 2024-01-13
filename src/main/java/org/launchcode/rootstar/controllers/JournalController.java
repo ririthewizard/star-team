@@ -1,9 +1,7 @@
 package org.launchcode.rootstar.controllers;
 
 import org.launchcode.rootstar.models.Journal;
-import org.launchcode.rootstar.models.Soil;
 import org.launchcode.rootstar.service.JournalService;
-import org.launchcode.rootstar.service.SoilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,14 +28,14 @@ public class JournalController {
     }
 
     @GetMapping("view-journal")
-    // Returns all soils in repository
-    public List<Journal> viewSoils() {
+    // Returns all journals in repository
+    public List<Journal> viewJournals() {
         return journalService.getAllJournals();
     }
 
     // POST MAPPING
     @PostMapping("/add")
-    // Returns a response entity with Uniform Resource Identifier with new soil ID and Body
+    // Returns a response entity with Uniform Resource Identifier with new journal ID and Body
     public ResponseEntity<Journal> addJournal(@RequestBody Journal journal) throws URISyntaxException {
         Journal savedJournal = journalService.addJournal(journal);
         return ResponseEntity.created(new URI("/journal/" + savedJournal.getId())).body(savedJournal);

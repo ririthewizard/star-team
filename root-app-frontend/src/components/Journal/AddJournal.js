@@ -10,7 +10,7 @@ export default function AddJournal() {
   const [description, setDescription] = useState("");
   const [season, setSeason] = useState("");
 
-  // EVENT HANDLER FOR SUBMITTING A SOIL TO DATABASE
+  // EVENT HANDLER FOR SUBMITTING A JOURNAL TO DATABASE
 
   const handleJournalSubmission = (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ export default function AddJournal() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(journal),
     })
-      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT SOIL IS ADDED
+      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT JOURNAL IS ADDED
       .then(() => {
         console.log("New journal added");
       })
@@ -67,7 +67,7 @@ export default function AddJournal() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            {/* GROWING ZONE */}
+            {/* SEASON */}
             <TextField
               required
               id="outlined-required"

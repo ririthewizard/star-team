@@ -6,7 +6,7 @@ export default function ViewJournal() {
   // Initializes state to an empty array
   const [journals, setJournals] = useState([]);
 
-  // Sets soils to json
+  // Sets journal to json
   useEffect(() => {
     fetch("http://localhost:8080/journal/view-journal")
       .then((res) => res.json())
@@ -27,7 +27,7 @@ export default function ViewJournal() {
       noValidate
       autoComplete="off"
     >
-      <h1>SOIL DATABASE</h1>
+      <h1>JOURNAL ENTRIES</h1>
       <Container>
         <Paper>
           <h1>Journals</h1>

@@ -1,9 +1,7 @@
 package org.launchcode.rootstar.service;
 
 import org.launchcode.rootstar.models.Journal;
-import org.launchcode.rootstar.models.Soil;
 import org.launchcode.rootstar.models.data.JournalRepository;
-import org.launchcode.rootstar.models.data.SoilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +18,7 @@ public class JournalService {
         this.journalRepository = journalRepository;
     }
 
-    // CRUD operations for Soil class
+    // CRUD operations for Journal class
 
     // CREATE
     public Journal addJournal(Journal journal) {
@@ -36,7 +34,7 @@ public class JournalService {
         return journalRepository.findAll();
     }
 
-    // TODO: make UPDATE functionality for Soil
+    // TODO: make UPDATE functionality for Journal
 
     // DELETE
 
