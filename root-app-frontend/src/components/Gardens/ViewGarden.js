@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { Container, Paper, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -8,31 +8,25 @@ export default function ViewGarden() {
   const [gardens, setGardens] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Sets gardens to json
-  useEffect(() => {
-    fetch("http://localhost:8080/gardens/view-gardens")
+  const handleSearchSubmission = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:8080/search/byGarden?query=${searchQuery}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
       .then((res) => res.json())
       .then((result) => {
         setGardens(result);
       })
-      // ERROR CATCH
-      .catch((error) => {
-        console.error("Error fetching Garden data:", error);
-      });
-  }, []);
-
-  // Search function
-  useEffect(() => {
-    fetch("http://localhost:8080/search/byGarden?query=" + searchQuery)
-      .then((res) => res.json())
-      .then((result) => {
-        setGardens(result);
+      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT A GARDEN WAS SEARCHED FOR
+      .then(() => {
+        console.log("Searched gardens for " + searchQuery);
       })
       // ERROR CATCH
       .catch((error) => {
-        console.error("Error fetching Garden data:", error);
+        console.error("Error searching for Garden:", error);
       });
-  }, []);
+  };
 
   return (
     <Box
@@ -47,23 +41,22 @@ export default function ViewGarden() {
       <Container>
         <Paper>
           <h1>Gardens</h1>
-          <div>
+          <form>
             <TextField
               required
               id="outlined-required"
-              label="searchTerm"
-              defaultValue="Search for a Garden"
+              label="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <Button
               variant="contained"
               color="primary"
-              onClick={(e) => {
-                setSearchQuery(e.target.value);
-              }}
+              onClick={handleSearchSubmission}
             >
               Search for Gardens
             </Button>
-          </div>
+          </form>
           {gardens.map((garden) => (
             <Paper key={garden.id}>
               <h4>{garden.name} Details:</h4>
