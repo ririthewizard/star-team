@@ -11,6 +11,8 @@ import ViewGarden from "./components/Gardens/ViewGarden";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { Link, Routes, Route } from "react-router-dom";
+import AddJournal from "./components/Journal/AddJournal";
+import ViewJournal from "./components/Journal/ViewJournal";
 
 
 function App() {
@@ -37,6 +39,12 @@ function App() {
 
           <li>
             <Link to="/seeds/view-seeds">View Seeds</Link>
+          </li>
+          <li>
+             <Link to="/journal/add">Add Journal</Link>
+          </li>         
+          <li>
+            <Link to="/journal/view-journal">View Journal</Link>
           </li>
           <li>
             <Link to="/plants/add">Add Plants</Link>
@@ -66,8 +74,12 @@ function App() {
 
 
         <Route path="/seeds/add" element={<AddSeed />} />
-
+        
         <Route path="/seeds/view-seeds" element={<ViewSeed />} />
+
+        <Route path="/journal/add" element={<AddJournal />} />
+
+        <Route path="/journal/view-journal" element={<ViewJournal />} />
 
         <Route path="/plants/add" element={<AddPlant />} />
 
