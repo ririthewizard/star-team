@@ -9,6 +9,7 @@ import ViewSoil from "./components/Soils/ViewSoil";
 import AddGarden from "./components/Gardens/AddGarden";
 import ViewGarden from "./components/Gardens/ViewGarden";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import { Link, Routes, Route } from "react-router-dom";
 
 
@@ -19,15 +20,21 @@ function App() {
 
     <div class name ="App">
       <h1> The garden builder application </h1>
-      <Login/>
     </div>
     
       <nav>
         <ul>
+  {/*Link is like an anchor tag <a>, and to= is like href*/}
           <li>
-            {/*Link is like an anchor tag <a>, and to= is like href*/}
-            <Link to="/seeds/add">Add Seeds</Link>
+            <Link to="/login">Login</Link>
           </li>
+          <li>
+            <Link to="/register">Register</Link>
+          </li>
+          <li>
+           <Link to="/seeds/add">Add Seeds</Link>
+          </li>
+
           <li>
             <Link to="/seeds/view-seeds">View Seeds</Link>
           </li>
@@ -53,6 +60,11 @@ function App() {
       </nav>
       <Routes>
         {/* path determinds the URL, element determins which Hook is used. */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+
+
         <Route path="/seeds/add" element={<AddSeed />} />
 
         <Route path="/seeds/view-seeds" element={<ViewSeed />} />
