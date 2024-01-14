@@ -1,4 +1,4 @@
-package org.launchcode.rootstar.models.data;
+package org.launchcode.rootstar.data;
 
 import org.launchcode.rootstar.models.Garden;
 import org.springframework.data.jpa.repository.JpaRepository;

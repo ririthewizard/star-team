@@ -1,4 +1,4 @@
-package org.launchcode.rootstar.models.data;
+package org.launchcode.rootstar.data;
 
 import org.launchcode.rootstar.models.User;
 import org.springframework.data.repository.CrudRepository;

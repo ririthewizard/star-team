@@ -1,7 +1,7 @@
 package org.launchcode.rootstar.service;
 
 import org.launchcode.rootstar.models.Plant;
-import org.launchcode.rootstar.models.data.PlantRepository;
+import org.launchcode.rootstar.data.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

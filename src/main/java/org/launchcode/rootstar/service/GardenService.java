@@ -5,10 +5,10 @@ import org.launchcode.rootstar.models.Garden;
 import org.launchcode.rootstar.models.Plant;
 import org.launchcode.rootstar.models.Seed;
 import org.launchcode.rootstar.models.Soil;
-import org.launchcode.rootstar.models.data.GardenRepository;
-import org.launchcode.rootstar.models.data.PlantRepository;
-import org.launchcode.rootstar.models.data.SeedRepository;
-import org.launchcode.rootstar.models.data.SoilRepository;
+import org.launchcode.rootstar.data.GardenRepository;
+import org.launchcode.rootstar.data.PlantRepository;
+import org.launchcode.rootstar.data.SeedRepository;
+import org.launchcode.rootstar.data.SoilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

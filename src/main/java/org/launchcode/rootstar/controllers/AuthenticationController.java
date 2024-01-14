@@ -3,13 +3,12 @@ package org.launchcode.rootstar.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.launchcode.rootstar.models.User;
 import jakarta.servlet.http.HttpSession;
 import org.launchcode.rootstar.models.User;
 import org.springframework.ui.Model;
 import org.launchcode.rootstar.models.dto.LoginFormDTO;
 import org.launchcode.rootstar.models.dto.RegistrationFormDTO;
-import org.launchcode.rootstar.models.data.UserRepository;
+import org.launchcode.rootstar.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -29,6 +28,7 @@ public class AuthenticationController {
 
     private static void  setUserInSession(HttpSession session, User user) { // to create a session object
         session.setAttribute(userSessionKey, user.getId()); // "I want to create a key (user session key = String "user")-value pair (userid)"
+        System.out.println("session: " + session.getAttribute("user"));
     }
 
     public User getUserFromSession(HttpSession session) { //now we need to look for the user in the session
@@ -53,14 +53,15 @@ public class AuthenticationController {
     @GetMapping ("/register")
     public String displayRegistrationForm (Model model, HttpSession session) { //Model class to pass data
         model.addAttribute(new RegistrationFormDTO());
-
-        //TODO: send value of logedIn boolean
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
 
         return "register";
     }
 
     @PostMapping ("/register")
-        public String processRegistrationForm (@ModelAttribute @Valid RegistrationFormDTO registrationFormDTO, Errors errors, HttpServletRequest request ) {
+        public String processRegistrationForm (@ModelAttribute @Valid RegistrationFormDTO registrationFormDTO,
+                                               Errors errors,
+                                               HttpServletRequest request ) {
             //@ModelAttribute is to handle DTO object, @Valid to handle validation
 
 
@@ -91,18 +92,20 @@ public class AuthenticationController {
 
              userRepository.save(newUser);
              setUserInSession(request.getSession(),newUser);
-             return "redirect:view-gardens"; // sends user to the view-garden page (in  GardenController)
+             return "redirect:/gardens"; // sends user to the view-garden page (in  GardenController)
     }
 
     @GetMapping("/login")
     public String displayLoginForm(Model model,HttpSession session) {
             model.addAttribute(new LoginFormDTO());
-            //TODO: send value of loggedIn boolean
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "login";
     }
 
     @PostMapping ("/login")
-    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO, Errors errors, HttpServletRequest request) {
+    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
+                                   Errors errors,
+                                   HttpServletRequest request) {
 
             if (errors.hasErrors()) {
                 return "login";
@@ -124,7 +127,7 @@ public class AuthenticationController {
 
 
             setUserInSession(request.getSession(), theUser);
-            return "redirect: gardens/view-gardens";
+            return "redirect: /gardens";
     }
 
     @GetMapping ("/logout")
