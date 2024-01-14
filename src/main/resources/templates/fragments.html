@@ -11,21 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@200;400;700&family=Assistant:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-/* TODO: style and route */
-
 <header th:fragment="header">
-    <div id="mag"><b> ??? </b> ??? </div>
+    <div id="mag"><b>ROOT: </b> The garden builder application </div>
     <div class="nav">
-        <span id="admin-portal" class= ??? ><a href="/"> ???  </a></span> | &nbsp;
         <th:block th:unless="${loggedIn}">
             <a class="navlink" href="/login">Log In</a>
+            <span style="margin-left: 10px;"></span>
             <a class="navlink" href="/register">Register</a>
         </th:block>
         <th:block th:if="${loggedIn}">
-            <a class="navlink" href="/???"> ??? </a>
-            <a class="navlink" href="/???"> ??? </a>
-            <a class="navlink" href="/???"> ??? </a>
+            <a class="navlink" href="/seeds/add">Add Seeds</a>
+            <a class="navlink" href="/seeds/view-seeds">View Seeds</a>
+            <a class="navlink" href="/plants/add">Add Plants</a>
+            <a class="navlink" href="/plants/view-plants">View Plants</a>
+            <a class="navlink" href="/soil/add">Add Soil</a>
+            <a class="navlink" href="/soil/view-seeds">View Soils</a>
+            <a class="navlink" href="/gardens/add">Add Gardens</a>
+            <a class="navlink" href="/gardens/view-gardens">View Gardens</a>
             <a class="navlink" href="/logout">Log Out</a>
         </th:block>
     </div>
