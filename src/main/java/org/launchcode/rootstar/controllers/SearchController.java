@@ -22,7 +22,7 @@ public class SearchController {
     @Autowired
     private GardenRepository gardenRepository;
 
-    @GetMapping
+    @GetMapping("/byGarden")
     // method findGarden utilizes method findByValue from SearchFunctions.java line 46
     public ResponseEntity<List<Garden>> findGarden(@RequestParam String query) {
         List<Garden> searchResults = searchFunctions.findByValue(query, gardenRepository.findAll());

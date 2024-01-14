@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import { Container, Paper } from "@mui/material";
+import { Container, Paper, Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 export default function ViewGarden() {
   // Initializes state to an empty array
   const [gardens, setGardens] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Sets gardens to json
   useEffect(() => {
     fetch("http://localhost:8080/gardens/view-gardens")
+      .then((res) => res.json())
+      .then((result) => {
+        setGardens(result);
+      })
+      // ERROR CATCH
+      .catch((error) => {
+        console.error("Error fetching Garden data:", error);
+      });
+  }, []);
+
+  // Search function
+  useEffect(() => {
+    fetch("http://localhost:8080/search/byGarden?query=" + searchQuery)
       .then((res) => res.json())
       .then((result) => {
         setGardens(result);
@@ -32,6 +47,23 @@ export default function ViewGarden() {
       <Container>
         <Paper>
           <h1>Gardens</h1>
+          <div>
+            <TextField
+              required
+              id="outlined-required"
+              label="searchTerm"
+              defaultValue="Search for a Garden"
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={(e) => {
+                setSearchQuery(e.target.value);
+              }}
+            >
+              Search for Gardens
+            </Button>
+          </div>
           {gardens.map((garden) => (
             <Paper key={garden.id}>
               <h4>{garden.name} Details:</h4>
