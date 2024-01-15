@@ -19,7 +19,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
     AuthenticationController authenticationController;
 
     /* whitelist pages anyone can access */
-    // TODO: check what pages will be whitelisted and their routs
+
     private static final List <String> whitelist = Arrays.asList("/register","/login", "/css");
 
     private static  boolean isWhitelisted (String path) {
@@ -30,7 +30,6 @@ public class AuthenticationFilter implements HandlerInterceptor {
         }
         return false;
     }
-
 
 
     @Override

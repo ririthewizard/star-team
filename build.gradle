@@ -29,7 +29,7 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.security:spring-security-crypto' //to encrypt the password
-	implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0' // not sure if it is needed
+//	implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0' // not sure if it is needed
 
 }
 

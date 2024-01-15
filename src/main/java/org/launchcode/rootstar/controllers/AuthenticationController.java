@@ -53,7 +53,7 @@ public class AuthenticationController {
     @GetMapping ("/register")
     public String displayRegistrationForm (Model model, HttpSession session) { //Model class to pass data
         model.addAttribute(new RegistrationFormDTO());
-        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+        model.addAttribute("loggedIn", session.getAttribute(userSessionKey) != null);
 
         return "register";
     }
@@ -68,13 +68,13 @@ public class AuthenticationController {
             //  send user back to the form if errors are found
 
             if (errors.hasErrors()) {
+                System.out.println("Registration form has errors");
                 return "register";
 
             }
 
             User existingUser = userRepository.findByUsername(registrationFormDTO.getUsername());
 
-            // TODO: Save new user & password,  start a new session and redirect to home page
 
             if (existingUser != null) {
                 errors.rejectValue("username","username.alreadyExists", "the user with that username already exists");
@@ -92,13 +92,14 @@ public class AuthenticationController {
 
              userRepository.save(newUser);
              setUserInSession(request.getSession(),newUser);
-             return "redirect:/gardens"; // sends user to the view-garden page (in  GardenController)
+            System.out.println("Registration form processed");
+             return "redirect:/home"; // sends user to the view-garden page (in  GardenController)
     }
 
     @GetMapping("/login")
     public String displayLoginForm(Model model,HttpSession session) {
             model.addAttribute(new LoginFormDTO());
-        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+        model.addAttribute("loggedIn", session.getAttribute(userSessionKey) != null);
         return "login";
     }
 
@@ -127,7 +128,7 @@ public class AuthenticationController {
 
 
             setUserInSession(request.getSession(), theUser);
-            return "redirect: /gardens";
+            return "redirect:/home";
     }
 
     @GetMapping ("/logout")

@@ -16,11 +16,11 @@ public abstract class AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
+//    @NotBlank
     @Size(max = 50)
     private String name;
 
-    @NotBlank
+//    @NotBlank
     @Size(max = 255)
     private String description;
 
