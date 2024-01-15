@@ -6,5 +6,4 @@ import java.io.InputStreamReader;
 
 public class Weather {
 
-    private
 }
