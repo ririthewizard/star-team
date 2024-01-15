@@ -12,6 +12,7 @@ import org.launchcode.rootstar.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Optional;
 
 @Controller
+@CrossOrigin
 public class AuthenticationController {
 
     @Autowired
@@ -93,7 +95,7 @@ public class AuthenticationController {
              userRepository.save(newUser);
              setUserInSession(request.getSession(),newUser);
             System.out.println("Registration form processed");
-             return "redirect:/home"; // sends user to the view-garden page (in  GardenController)
+             return "redirect:/journal"; // sends user to the view-garden page (in  GardenController)
     }
 
     @GetMapping("/login")
@@ -128,7 +130,7 @@ public class AuthenticationController {
 
 
             setUserInSession(request.getSession(), theUser);
-            return "redirect:/home";
+            return "redirect:/journal";
     }
 
     @GetMapping ("/logout")

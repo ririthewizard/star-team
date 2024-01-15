@@ -11,7 +11,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    background-color: #1E323C;
+    background-color: #5fb7a1;
     color: white;
     height: 60px;
     padding: 10px 30px;
@@ -22,7 +22,7 @@ header {
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-end;
-    background-color: #DA8034;
+    background-color: #5fb7a1;
     color: white;
     font-size: 0.9rem;
     height: 30px;
@@ -35,13 +35,13 @@ h1, h2, h3 {
 }
 
 h1 {
-    color: #DA8034;
+    color: #5fb7a1;
     font-weight: 700;
 }
 
 h2 {
     color: white;
-    background-color: #1E323C;
+    background-color: #5fb7a1;
     font-size: 20px;
     font-weight: 200;
     letter-spacing: 6px;
@@ -52,7 +52,7 @@ h2 {
 }
 
 h3 {
-    color: #1E323C;
+    color: #5fb7a1;
     font-size: 24px;
     font-weight: 700;
 }
@@ -118,7 +118,7 @@ a.navlink:hover, a.navlink:active {
 
 button {
     color: white;
-    background-color: #DA8034;
+    background-color: #5fb7a1;
     margin-top: 20px;
     padding: 5px;
     outline: none;
@@ -127,11 +127,11 @@ button {
 }
 
 button.delete {
-    background-color: #B03A2E;
+    background-color: #5fb7a1;
 }
 
 .error {
-    color: #B03A2E;
+    color: #5fb7a1;
     font-size: 0.9rem;
     margin: 0;
 }
