@@ -4,20 +4,38 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 
-const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+import AddSeed from "./components/Seeds/AddSeed";
+import ViewSeed from "./components/Seeds/ViewSeed";
+import AddPlant from "./components/Plants/AddPlant";
+import ViewPlant from "./components/Plants/ViewPlant";
+import AddSoil from "./components/Soils/AddSoil";
+import ViewSoil from "./components/Soils/ViewSoil";
+import AddGarden from "./components/Gardens/AddGarden";
+import ViewGarden from "./components/Gardens/ViewGarden";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import AddJournal from "./components/Journal/AddJournal";
+import ViewJournal from "./components/Journal/ViewJournal";
+import Home from "./components/Home";
 
+
+const App = () => {
   return (
     <Router>
-
-
-<Routes>
-  <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-  <Route path="/register" element={<Register />} />
-  <Route path="/" element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-</Routes>
-
-      
+      <Header />
+      <Route path="/" exact component={Home} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
+      <Route path="/seeds/add" component={AddSeed} />
+      <Route path="/seeds/view-seeds" component={ViewSeed} />
+      <Route path="/plants/add" component={AddPlant} />
+      <Route path="/plants/view-plants" component={ViewPlant} />
+      <Route path="/soil/add" component={AddSoil} />
+      <Route path="/soil/view-soils" component={ViewSoil} />
+      <Route path="/gardens/add" component={AddGarden} />
+      <Route path="/gardens/view-gardens" component={ViewGarden} />
+      <Route path="/journal/add" component={AddJournal} />
+      <Route path="/journal/view-jouirnal" component={ViewJournal} />
     </Router>
   );
 };
@@ -29,124 +47,3 @@ export default App;
 
 
 
-
-
-// import "./App.css";
-// // import RootAppBar from "./components/AppBar";
-// import AddSeed from "./components/Seeds/AddSeed";
-// import ViewSeed from "./components/Seeds/ViewSeed";
-// import AddPlant from "./components/Plants/AddPlant";
-// import ViewPlant from "./components/Plants/ViewPlant";
-// import AddSoil from "./components/Soils/AddSoil";
-// import ViewSoil from "./components/Soils/ViewSoil";
-// import AddGarden from "./components/Gardens/AddGarden";
-// import ViewGarden from "./components/Gardens/ViewGarden";
-// import Login from "./components/Login";
-// import Register from "./components/Register";
-// import { Link, Routes, Route } from "react-router-dom";
-// import AddJournal from "./components/Journal/AddJournal";
-// import ViewJournal from "./components/Journal/ViewJournal";
-// import Home from "./components/Home";
-// import Logout from "./components/Logout";
-
-
-// function App() {
-//   return (
-//     // Reminder: <> is fragment within which the <ROUTES> Hooks are wrapped.
-//     <>
-
-//     <div class name ="App">
-//       <h1> The garden builder application </h1>
-//     </div>
-
-//       <nav>
-//         <ul>
-//   {/*Link is like an anchor tag <a>, and to= is like href*/}
-//           <li>
-//             <Link to="/home">Home</Link>
-//           </li>
-//           <li>
-//             <Link to="/login">Login</Link>
-//           </li>
-//           <li>
-//             <Link to="/logout">Logout</Link>
-//           </li>
-//           <li>
-//             <Link to="/register">Register</Link>
-//           </li>
-//           <li>
-//            <Link to="/seeds/add">Add Seeds</Link>
-//           </li>
-
-//           <li>
-//             <Link to="/seeds/view-seeds">View Seeds</Link>
-//           </li>
-//           <li>
-//              <Link to="/journal/add">Add Journal</Link>
-//           </li>
-//           <li>
-//             <Link to="/journal/view-journal">View Journal</Link>
-//           </li>
-//           <li>
-//             <Link to="/plants/add">Add Plants</Link>
-//           </li>
-//           <li>
-//             <Link to="/plants/view-plants">View Plants</Link>
-//           </li>
-//           <li>
-//             <Link to="/soil/add">Add Soil</Link>
-//           </li>
-//           <li>
-//             <Link to="/soil/view-soils">View Soils</Link>
-//           </li>
-//           <li>
-//             <Link to="/gardens/add">Add Garden</Link>
-//           </li>
-//           <li>
-//             <Link to="/gardens/view-gardens">View Gardens</Link>
-//           </li>
-//         </ul>
-//       </nav>
-//       <Routes>
-//         {/* path determinds the URL, element determins which Hook is used. */}
-//         <Route path="/home" element={<Home />} />
-
-//         <Route path="/login" element={<Login />} />
-
-//         <Route path="/register" element={<Register />} />
-
-//         <Route path="/logout" element={<Logout />} />
-
-//         <Route path="/seeds/add" element={<AddSeed />} />
-
-//         <Route path="/seeds/view-seeds" element={<ViewSeed />} />
-
-//         <Route path="/journal/add" element={<AddJournal />} />
-
-//         <Route path="/journal/view-journal" element={<ViewJournal />} />
-
-//         <Route path="/plants/add" element={<AddPlant />} />
-
-//         <Route path="/plants/view-plants" element={<ViewPlant />} />
-
-//         <Route path="/soil/add" element={<AddSoil />} />
-
-//         <Route path="/soil/view-soils" element={<ViewSoil />} />
-
-//         <Route path="/gardens/add" element={<AddGarden />} />
-
-//         <Route path="/gardens/view-gardens" element={<ViewGarden />} />
-//       </Routes>
-//     </>
-//     // <div>
-//     //   <header>
-//     //     <RootAppBar />
-//     //   </header>
-//     //   <body>
-//     //   </body>
-//     // </div>
-
-//   );
-// }
-
-// export default App;
