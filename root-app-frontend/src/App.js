@@ -1,113 +1,68 @@
-import "./App.css";
-// import RootAppBar from "./components/AppBar";
-import AddSeed from "./components/Seeds/AddSeed";
-import ViewSeed from "./components/Seeds/ViewSeed";
-import AddPlant from "./components/Plants/AddPlant";
-import ViewPlant from "./components/Plants/ViewPlant";
-import AddSoil from "./components/Soils/AddSoil";
-import ViewSoil from "./components/Soils/ViewSoil";
-import AddGarden from "./components/Gardens/AddGarden";
-import ViewGarden from "./components/Gardens/ViewGarden";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import { Link, Routes, Route } from "react-router-dom";
-import AddJournal from "./components/Journal/AddJournal";
-import ViewJournal from "./components/Journal/ViewJournal";
-import Home from "./components/Home";
+import React from 'react';
+import { Link } from 'react-router-dom'; 
 
+const App = () => {
+  const loggedIn = false; // Set this based on  authentication logic
 
-function App() {
   return (
-    // Reminder: <> is fragment within which the <ROUTES> Hooks are wrapped.
-    <>
+    <html lang="en">
+      
+      <head>
+        <meta charSet="UTF-8" />
+        <title>ROOT</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="/css/styles.css" />
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@200;400;700&family=Assistant:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
 
-    <div class name ="App">
-      <h1> The garden builder application </h1>
-    </div>
-
-      <nav>
-        <ul>
-  {/*Link is like an anchor tag <a>, and to= is like href*/}
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-          <li>
-           <Link to="/seeds/add">Add Seeds</Link>
-          </li>
-
-          <li>
-            <Link to="/seeds/view-seeds">View Seeds</Link>
-          </li>
-          <li>
-             <Link to="/journal/add">Add Journal</Link>
-          </li>
-          <li>
-            <Link to="/journal/view-journal">View Journal</Link>
-          </li>
-          <li>
-            <Link to="/plants/add">Add Plants</Link>
-          </li>
-          <li>
-            <Link to="/plants/view-plants">View Plants</Link>
-          </li>
-          <li>
-            <Link to="/soil/add">Add Soil</Link>
-          </li>
-          <li>
-            <Link to="/soil/view-soils">View Soils</Link>
-          </li>
-          <li>
-            <Link to="/gardens/add">Add Garden</Link>
-          </li>
-          <li>
-            <Link to="/gardens/view-gardens">View Gardens</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        {/* path determinds the URL, element determins which Hook is used. */}
-        <Route path="/home" element={<Home />} />
-
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/register" element={<Register />} />
-
-        <Route path="/seeds/add" element={<AddSeed />} />
-
-        <Route path="/seeds/view-seeds" element={<ViewSeed />} />
-
-        <Route path="/journal/add" element={<AddJournal />} />
-
-        <Route path="/journal/view-journal" element={<ViewJournal />} />
-
-        <Route path="/plants/add" element={<AddPlant />} />
-
-        <Route path="/plants/view-plants" element={<ViewPlant />} />
-
-        <Route path="/soil/add" element={<AddSoil />} />
-
-        <Route path="/soil/view-soils" element={<ViewSoil />} />
-
-        <Route path="/gardens/add" element={<AddGarden />} />
-
-        <Route path="/gardens/view-gardens" element={<ViewGarden />} />
-      </Routes>
-    </>
-    // <div>
-    //   <header>
-    //     <RootAppBar />
-    //   </header>
-    //   <body>
-    //   </body>
-    // </div>
-
+      <body>
+        <header>
+          <div id="mag">
+            <b>ROOT: </b> The garden builder application
+          </div>
+          <div className="nav">
+            {!loggedIn ? (
+              <>
+                <Link className="navlink" to="/login">
+                  Log In
+                </Link>
+                <span style={{ marginLeft: '10px' }}></span>
+                <Link className="navlink" to="/register">
+                  Register
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link className="navlink" to="/journal/add">
+                  Add Journal
+                </Link>
+                {/* Add other links for logged-in users */}
+                <Link className="navlink" to="/logout">
+                  Log Out
+                </Link>
+              </>
+            )}
+          </div>
+        </header>
+      </body>
+    </html>
   );
-}
+};
 
 export default App;
