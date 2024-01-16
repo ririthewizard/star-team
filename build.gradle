@@ -31,6 +31,9 @@ dependencies {
 	implementation 'org.springframework.security:spring-security-crypto' //to encrypt the password
 	// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation 'org.json:json:20090211'
+
 
 }
 

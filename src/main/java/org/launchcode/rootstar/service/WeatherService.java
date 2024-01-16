@@ -13,16 +13,16 @@ import java.util.Scanner;
 @Service
 public class WeatherService {
 
-    public static JSONObject getWeatherData(int locationKey){
+    public static JSONObject getWeatherData(String postalCode){
 
-        JSONArray locationData = getLocationData(locationKey);
+        String locationKey = getLocationData(postalCode);
 
         //get location key from postal code
-        JSONObject location = (JSONObject) locationData.get(0);
-        String key = (String) location.get("Key");
+//        JSONObject location = (JSONObject) locationData.get(0);
+//        String key = locationData.get("Key");
 
         //API request URL with location key
-        String urlString = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/&q=28204_PC?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE&q=" + key;
+        String urlString = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/&q=28204_PC?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE&q=" + locationKey;
 
         try{
             //call api and get response
@@ -52,18 +52,18 @@ public class WeatherService {
             JSONObject fiveDay = (JSONObject) resultsJsonObj.get("DailyForecasts");
 
             JSONObject weatherData = new JSONObject();
-            weatherData.put("five_day", fiveDay);
+            return (JSONObject) weatherData.put("five_day", fiveDay);
 
         } catch(Exception e){
             e.printStackTrace();
         }
-
+//        getLocationData(locationKey);
         return null;
     }
 
     //retrieves location key using postal codes
-    public static JSONArray getLocationData(int locationKey){
-        String urlString = "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE&q=" + locationKey ;
+    public static String getLocationData(String postalCode){
+        String urlString = "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE&q=" + postalCode ;
 
         try {
             HttpURLConnection conn = fetchApiResponse(urlString);
@@ -91,8 +91,9 @@ public class WeatherService {
                 JSONParser parser = new JSONParser();
                 JSONObject resultsJsonObj = (JSONObject) parser.parse(String.valueOf(resultJson));
 
-                JSONArray locationData = (JSONArray) resultsJsonObj.get("results");
-                return locationData;
+                JSONArray locationDataArray = (JSONArray) resultsJsonObj.get(0);
+                System.out.println(locationDataArray.get(1).toString());
+                return locationDataArray.get(1).toString();
             }
         } catch(Exception e){
             e.printStackTrace();
