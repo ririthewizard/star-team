@@ -1,3 +1,84 @@
+import React, { useState } from 'react';
+
+const Login = ({ setLoggedIn }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+              const response = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+              });
+        
+              if (response.ok) {
+                // Login successful, handle further actions
+                console.log('Login successful');
+              } else {
+                // Login failed, handle error
+                console.error('Login failed');
+              }
+            } catch (error) {
+              console.error('Error during login:', error);
+            }
+          ;
+    // If successful, update the loggedIn state:
+
+    const response = await loginUser(username, password);
+
+    // Check if the login was successful based on the response
+    if (response.success) {
+      // If successful, update the loggedIn state
+      setLoggedIn(true);
+    } else {
+      // If login failed, handle the error (display an error message, etc.)
+      console.error('Login failed:', response.error);
+    }
+  }; catch (error) {
+    // Handle other errors (e.g., network issues)
+    console.error('Error during login:', error);
+  }
+
+    setLoggedIn(true);}
+  
+
+  return (
+    <div>
+      <header>
+        {/* ... Header content */}
+      </header>
+      <main>
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+          {/* ... Form fields for username and password */}
+          <button type="submit">Log In</button>
+        </form>
+        <p className="mt-5">
+          Don't have an account? <a href="/register">Register here.</a>
+        </p>
+      </main>
+    </div>
+  );
+};
+
+export default Login;
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React, { useState } from 'react';
 // import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@mui/material';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';

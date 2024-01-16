@@ -20,7 +20,8 @@ public class AuthenticationFilter implements HandlerInterceptor {
 
     /* whitelist pages anyone can access */
 
-    private static final List <String> whitelist = Arrays.asList("/register","/login", "/css");
+    private static final List <String> whitelist = Arrays.asList("/register","/login", "/css",
+            "/garden", "/plants", "/seeds", "/soils");
 
     private static  boolean isWhitelisted (String path) {
         for (String pathRoot: whitelist) {

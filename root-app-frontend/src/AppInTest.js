@@ -1,3 +1,36 @@
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import Login from './components/Login';
+import Register from './components/Register';
+
+const App = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  return (
+    <Router>
+
+
+<Routes>
+  <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
+  <Route path="/register" element={<Register />} />
+  <Route path="/" element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+</Routes>
+
+      
+    </Router>
+  );
+};
+
+export default App;
+
+
+
+
+
+
+
+
 // import "./App.css";
 // // import RootAppBar from "./components/AppBar";
 // import AddSeed from "./components/Seeds/AddSeed";
@@ -14,6 +47,7 @@
 // import AddJournal from "./components/Journal/AddJournal";
 // import ViewJournal from "./components/Journal/ViewJournal";
 // import Home from "./components/Home";
+// import Logout from "./components/Logout";
 
 
 // function App() {
@@ -33,6 +67,9 @@
 //           </li>
 //           <li>
 //             <Link to="/login">Login</Link>
+//           </li>
+//           <li>
+//             <Link to="/logout">Logout</Link>
 //           </li>
 //           <li>
 //             <Link to="/register">Register</Link>
@@ -77,6 +114,8 @@
 //         <Route path="/login" element={<Login />} />
 
 //         <Route path="/register" element={<Register />} />
+
+//         <Route path="/logout" element={<Logout />} />
 
 //         <Route path="/seeds/add" element={<AddSeed />} />
 

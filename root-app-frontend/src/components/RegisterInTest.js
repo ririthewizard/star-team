@@ -25,12 +25,33 @@ const RegistrationForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Validate the form before submission
+
     if (validateForm()) {
-      // Handle form submission logic using registrationForm state
-      console.log('Form submitted:', registrationForm);
+      try {
+        const response = await fetch("http://localhost:8080/register", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: registrationForm.username,
+            password: registrationForm.password,
+            verifyPassword: registrationForm.verifyPassword,
+          }),
+        });
+
+        if (response.ok) {
+          // Registration successful, you can handle the success accordingly
+          console.log('Registration successful');
+        } else {
+          // Registration failed, handle the error
+          console.error('Registration failed');
+        }
+      } catch (error) {
+        console.error('Error during registration:', error);
+      }
     }
   };
 

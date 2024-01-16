@@ -14,9 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
-@RestController
+import java.util.Optional;
+//@Controller
+//@RestController
+@Controller
 @RequestMapping
 @CrossOrigin
 public class AuthenticationController {
