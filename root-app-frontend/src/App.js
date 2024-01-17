@@ -10,6 +10,7 @@ import AddGarden from "./components/Gardens/AddGarden";
 import ViewGarden from "./components/Gardens/ViewGarden";
 import DeleteGarden from "./components/Gardens/DeleteGarden";
 import EditGarden from "./components/Gardens/EditGarden";
+import AccuWeather from "./components/Weather/AccuWeather";
 import { Link, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
             <Link to="gardens/edit">Update a Garden</Link>
           </li>
         </ul>
+        <AccuWeather />
       </nav>
       <Routes>
         {/* path determinds the URL, element determins which Hook is used. */}

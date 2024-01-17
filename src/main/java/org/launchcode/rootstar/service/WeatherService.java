@@ -1,8 +1,9 @@
 package org.launchcode.rootstar.service;
 
-import org.json.simple.parser.JSONParser;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 @Service
 public class WeatherService {
 
-    public static JSONObject getWeatherData(String postalCode){
+    public static JsonObject getWeatherData(String postalCode){
 
         String locationKey = getLocationData(postalCode);
 
@@ -22,7 +23,7 @@ public class WeatherService {
 //        String key = locationData.get("Key");
 
         //API request URL with location key
-        String urlString = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/&q=28204_PC?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE&q=" + locationKey;
+        String urlString = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey + "?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE";
 
         try{
             //call api and get response
@@ -32,7 +33,6 @@ public class WeatherService {
 
             if (conn.getResponseCode() != 200){
                 System.out.println("Error: Could not connect to API");
-                return null;
             }
 
             StringBuilder resultsJson = new StringBuilder();
@@ -44,15 +44,23 @@ public class WeatherService {
             scanner.close();
             conn.disconnect();
 
-            //parse through data
-            JSONParser parser = new JSONParser();
-            JSONObject resultsJsonObj = (JSONObject) parser.parse(String.valueOf(resultsJson));
+            // parse through data
+            JsonParser parser = new JsonParser();
+            JsonObject resultsJsonObj = parser.parse(resultsJson.toString()).getAsJsonObject();
 
-            //retrieve five day data
-            JSONObject fiveDay = (JSONObject) resultsJsonObj.get("DailyForecasts");
+            // retrieve five day data
+            JsonElement fiveDay = resultsJsonObj.getAsJsonArray("DailyForecasts");
 
-            JSONObject weatherData = new JSONObject();
-            return (JSONObject) weatherData.put("five_day", fiveDay);
+            // confirm that JsonElement contains data
+            System.out.println(fiveDay);
+
+            JsonObject weatherData = new JsonObject();
+
+            weatherData.add("five_day", fiveDay);
+
+            // confirm that JsonObject contains data
+            System.out.println(weatherData);
+            return weatherData;
 
         } catch(Exception e){
             e.printStackTrace();
@@ -63,7 +71,9 @@ public class WeatherService {
 
     //retrieves location key using postal codes
     public static String getLocationData(String postalCode){
-        String urlString = "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE&q=" + postalCode ;
+        System.out.println(postalCode);
+        String urlString = "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE&q=" + postalCode;
+        System.out.println(urlString);
 
         try {
             HttpURLConnection conn = fetchApiResponse(urlString);
@@ -88,12 +98,14 @@ public class WeatherService {
                 conn.disconnect();
 
                 //parse JSON string into JSON obj
-                JSONParser parser = new JSONParser();
-                JSONObject resultsJsonObj = (JSONObject) parser.parse(String.valueOf(resultJson));
-
-                JSONArray locationDataArray = (JSONArray) resultsJsonObj.get(0);
-                System.out.println(locationDataArray.get(1).toString());
-                return locationDataArray.get(1).toString();
+                JsonArray jsonArray = JsonParser.parseString(resultJson.toString()).getAsJsonArray();
+                System.out.println(jsonArray);
+                JsonObject result = jsonArray.get(0).getAsJsonObject();
+                System.out.println(result);
+                String key = result.get("Key").getAsString();
+                System.out.println(key);
+                System.out.println(key);
+                return key;
             }
         } catch(Exception e){
             e.printStackTrace();
