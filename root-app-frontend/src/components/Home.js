@@ -1,11 +1,12 @@
-import React from "react";
+
+import React from 'react';
 
 const Home = () => {
   return (
-    <div>
-      <h1>ROOT</h1>
-      <p>The garden builder app.</p>
-    </div>
+    <main>
+      <h2> ROOT</h2>
+      <p>This portal will allow you to help manage your garden.</p>
+    </main>
   );
 };
 
