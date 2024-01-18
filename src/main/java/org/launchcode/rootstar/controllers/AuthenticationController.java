@@ -2,21 +2,22 @@ package org.launchcode.rootstar.controllers;
 
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import jakarta.servlet.http.HttpSession;
 import org.launchcode.rootstar.models.User;
-import org.launchcode.rootstar.models.data.UserRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.launchcode.rootstar.models.dto.LoginFormDTO;
 import org.launchcode.rootstar.models.dto.RegistrationFormDTO;
+import org.launchcode.rootstar.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
-@RestController
+import java.util.Optional;
+@Controller
+//@RestController
 @RequestMapping
 @CrossOrigin
 public class AuthenticationController {
@@ -39,7 +40,7 @@ public class AuthenticationController {
             return null;
         }
 
-        Optional<User> userOpt = userRepository.findById(userId); //Optional container (may be we get the user may be not)
+    Optional<User> userOpt = userRepository.findById(userId); //Optional container (may be we get the user may be not)
 
         if (userOpt.isEmpty()) {
             return null;
@@ -50,7 +51,7 @@ public class AuthenticationController {
 
     // create handlers
 
-    @GetMapping("/register")
+    @GetMapping ("/register")
     public String displayRegistrationForm (Model model, HttpSession session) { //Model class to pass data
         model.addAttribute(new RegistrationFormDTO());
         model.addAttribute("loggedIn", session.getAttribute(userSessionKey) != null);
@@ -58,68 +59,84 @@ public class AuthenticationController {
         return "register";
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> processRegistrationForm(@ModelAttribute @Valid RegistrationFormDTO registrationFormDTO,
-                                                     Errors errors,
-                                                     HttpServletRequest request) {
-        if (errors.hasErrors()) {
-            return ResponseEntity.badRequest().body("Registration form has errors");
-        }
+    @PostMapping ("/register")
+        public String processRegistrationForm (@ModelAttribute @Valid RegistrationFormDTO registrationFormDTO,
+                                               Errors errors,
+                                               HttpServletRequest request ) {
+            //@ModelAttribute is to handle DTO object, @Valid to handle validation
 
-        User existingUser = userRepository.findByUsername(registrationFormDTO.getUsername());
 
-        if (existingUser != null) {
-            return ResponseEntity.badRequest().body("The user with that username already exists");
-        }
+            //  send user back to the form if errors are found
 
-        String password = registrationFormDTO.getPassword();
-        String verifyPassword = registrationFormDTO.getVerifyPassword();
+            if (errors.hasErrors()) {
+                System.out.println("Registration form has errors");
+                return "register";
 
-        if (!password.equals(verifyPassword)) {
-            return ResponseEntity.badRequest().body("Passwords do not match");
-        }
+            }
 
-        User newUser = new User(registrationFormDTO.getUsername(), registrationFormDTO.getPassword());
+            User existingUser = userRepository.findByUsername(registrationFormDTO.getUsername());
 
-        userRepository.save(newUser);
-        setUserInSession(request.getSession(), newUser);
 
-        return ResponseEntity.ok("Registration successful");
+            if (existingUser != null) {
+                errors.rejectValue("username","username.alreadyExists", "the user with that username already exists");
+                return "register";
+            }
+
+            String password = registrationFormDTO.getPassword();
+            String verifyPassword = registrationFormDTO.getVerifyPassword();
+             if (!password.equals(verifyPassword)) {
+                 errors.rejectValue("password", "passwords.mismatch", "passwords do not match");
+                 return "register";
+             }
+
+             User newUser = new User(registrationFormDTO.getUsername(),registrationFormDTO.getPassword());
+
+             userRepository.save(newUser);
+             setUserInSession(request.getSession(),newUser);
+            System.out.println("Registration form processed");
+             return "redirect:/journal/add"; // sends user to the view-garden page (in  GardenController)
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
-                                              Errors errors,
-                                              HttpServletRequest request) {
-        if (errors.hasErrors()) {
-            return ResponseEntity.badRequest().body("Login form has errors");
-        }
+    @GetMapping("/login")
+    public String displayLoginForm(Model model,HttpSession session) {
+            model.addAttribute(new LoginFormDTO());
+        model.addAttribute("loggedIn", session.getAttribute(userSessionKey) != null);
+        return "login";
+    }
 
-        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+    @PostMapping ("/login")
+    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
+                                   Errors errors,
+                                   HttpServletRequest request) {
 
-        String password = loginFormDTO.getPassword();
+            if (errors.hasErrors()) {
+                return "login";
+            }
 
-        if (theUser == null || !theUser.isMatchingPassword(password)) {
-            return ResponseEntity.badRequest().body("Wrong credentials. Try again");
-        }
+            User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
 
-        setUserInSession(request.getSession(), theUser);
+            String password = loginFormDTO.getPassword();
 
-        return ResponseEntity.ok("Login successful");
+            if (theUser == null || !theUser.isMatchingPassword(password)) {
+
+                errors.rejectValue(
+                        "password",
+                        "login.invalid",
+                        "Wrong credentials. Try again"
+                );
+                return "login";
+            }
+
+
+            setUserInSession(request.getSession(), theUser);
+            return "redirect:/journal/add";
+    }
+
+    @GetMapping ("/logout")
+    public String logout (HttpServletRequest request) {
+            request.getSession().invalidate();
+            return "redirect:/login";
     }
 
 
-    @GetMapping("/checkSession")
-    public ResponseEntity<?> checkSession(HttpServletRequest request) {
-        HttpSession session = request.getSession(false); // false means don't create a new session if none exists
-        boolean loggedIn = session != null && session.getAttribute("user") != null;
-        return ResponseEntity.ok(loggedIn);
-    }
-
-
-    @GetMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request) {
-        request.getSession().invalidate();
-        return ResponseEntity.ok("Logout successful");
-    }
 }

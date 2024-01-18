@@ -13,13 +13,24 @@ const Login = () => {
     e.preventDefault(); // Prevents the default form submission behavior
 
     try {
-      const response = await fetch('http://localhost:8080/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
+      const formData = new FormData();
+formData.append('username', username);
+formData.append('password', password);
+
+const response = await fetch('http://localhost:8080/login', {
+    method: 'POST',
+    body: formData,
+});
+
+
+      // const response = await fetch('http://localhost:8080/login', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ username, password }),
+      // });
+      
 
       if (response.ok) {
         // Login successful, handle further actions
