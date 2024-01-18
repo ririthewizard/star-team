@@ -10,11 +10,13 @@ import AddGarden from "./components/Gardens/AddGarden";
 import ViewGarden from "./components/Gardens/ViewGarden";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import DeleteGarden from "./components/Gardens/DeleteGarden";
+import EditGarden from "./components/Gardens/EditGarden";
+import AccuWeather from "./components/Weather/AccuWeather";
 import { Link, Routes, Route } from "react-router-dom";
 import AddJournal from "./components/Journal/AddJournal";
 import ViewJournal from "./components/Journal/ViewJournal";
 // import Home from "./components/Home";
-
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
     </div>
 
       <nav>
+        <h2>Menu</h2>
         <ul>
   {/*Link is like an anchor tag <a>, and to= is like href*/}
           {/* <li>
@@ -68,7 +71,14 @@ function App() {
           <li>
             <Link to="/gardens/view-gardens">View Gardens</Link>
           </li>
+          <li>
+            <Link to="/gardens/delete">Delete a Garden</Link>
+          </li>
+          <li>
+            <Link to="gardens/edit">Update a Garden</Link>
+          </li>
         </ul>
+        <AccuWeather />
       </nav>
       <Routes>
         {/* path determinds the URL, element determins which Hook is used. */}
@@ -97,6 +107,10 @@ function App() {
         <Route path="/gardens/add" element={<AddGarden />} />
 
         <Route path="/gardens/view-gardens" element={<ViewGarden />} />
+
+        <Route path="/gardens/delete" element={<DeleteGarden />} />
+
+        <Route path="/gardens/edit" element={<EditGarden />} />
       </Routes>
     </>
 
@@ -107,7 +121,6 @@ function App() {
     //   <body>
     //   </body>
     // </div>
-
   );
 }
 
