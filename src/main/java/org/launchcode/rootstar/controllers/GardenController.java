@@ -2,8 +2,8 @@ package org.launchcode.rootstar.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.launchcode.rootstar.service.models.Garden;
-import org.launchcode.rootstar.service.models.data.GardenRepository;
+import org.launchcode.rootstar.models.Garden;
+import org.launchcode.rootstar.models.data.GardenRepository;
 import org.launchcode.rootstar.service.GardenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

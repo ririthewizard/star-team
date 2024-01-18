@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { Container, Paper, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import "./styles.css";
+// import "./styles.css";
 
 // API KEY RILEY WILLIAMS: FGZPcs0psWYrremDRCAfgYcOAZhFXxeE
 // API KEY ANDREW WOODCOCK: O18vFRDTyjGn0jwdAIbQ9aFVdGMZY3kN
@@ -41,9 +41,11 @@ export default function AccuWeather() {
       noValidate
       autoComplete="off"
     >
-      <h1 className="forecast-header" style={{ padding: 10 }}>FORECAST</h1>
+      <h1 className="forecast-header" style={{ padding: 10 }}>
+        FORECAST
+      </h1>
       <Container>
-        <Paper  className="center-align">
+        <Paper className="center-align">
           <h1>Enter your ZIP Code</h1>
           <form>
             <TextField
@@ -65,11 +67,17 @@ export default function AccuWeather() {
           <div>
             {weather.five_day &&
               weather.five_day.map((day) => (
-                <Paper elevation={2} key={day.EpochDate} className="forecast-boxes">
+                <Paper
+                  elevation={2}
+                  key={day.EpochDate}
+                  className="forecast-boxes"
+                >
                   Date: {day.Date} <br />
                   Weather: {day.Day.IconPhrase} <br />
-                  Temperature: Low of {day.Temperature.Minimum.Value}{"\u00B0"} Fahrenheit and high of{" "}
-                  {day.Temperature.Maximum.Value}{"\u00B0"} Fahrenheit
+                  Temperature: Low of {day.Temperature.Minimum.Value}
+                  {"\u00B0"} Fahrenheit and high of{" "}
+                  {day.Temperature.Maximum.Value}
+                  {"\u00B0"} Fahrenheit
                   <br />
                   <br />
                 </Paper>

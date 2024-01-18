@@ -1,7 +1,7 @@
 package org.launchcode.rootstar.service;
 
-import org.launchcode.rootstar.service.models.Soil;
-import org.launchcode.rootstar.service.models.data.SoilRepository;
+import org.launchcode.rootstar.models.Soil;
+import org.launchcode.rootstar.models.data.SoilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

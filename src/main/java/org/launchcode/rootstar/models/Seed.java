@@ -1,4 +1,4 @@
-package org.launchcode.rootstar.service.models;
+package org.launchcode.rootstar.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
