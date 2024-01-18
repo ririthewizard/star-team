@@ -1,7 +1,7 @@
 package org.launchcode.rootstar.service;
 
-import org.launchcode.rootstar.service.models.Garden;
-import org.launchcode.rootstar.service.models.data.GardenRepository;
+import org.launchcode.rootstar.models.Garden;
+import org.launchcode.rootstar.models.data.GardenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
