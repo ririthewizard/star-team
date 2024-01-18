@@ -34,7 +34,7 @@ public class JournalService {
         return journalRepository.findAll();
     }
 
-    // TODO: make UPDATE functionality for Journal
+
 
     // DELETE
 

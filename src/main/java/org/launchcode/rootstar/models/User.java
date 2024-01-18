@@ -11,25 +11,29 @@ public class User extends AbstractEntity {
     private String username;
 
     @NotNull
-    private String passwordHash;
+    private String pwHash;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String username, String password) {
         this.username = username;
-        this.passwordHash = encoder.encode(password); // when we receive a password from the form we will encrypt it and will give it a password and set that value for the passwordHash, this has will be stored in a database
+        this.pwHash = encoder.encode(password); //when we receive a string password we want to encode it
     }
-
 
     public String getUsername() {
         return username;
     }
 
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); // create a new instance of a password encoder
+    // Static method to use the bcrypt dependency for encoding
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-
+    // Instance method to use the bcrypt multi-step matcher (.equals is not enough)
     public boolean isMatchingPassword(String password) {
-        return encoder.matches(password, passwordHash);
+        return encoder.matches(password, pwHash);
     }
+
 }
+
+
+
+

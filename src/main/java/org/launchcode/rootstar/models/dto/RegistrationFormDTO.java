@@ -3,12 +3,15 @@ package org.launchcode.rootstar.models.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
 
 public class RegistrationFormDTO extends LoginFormDTO{
 
-    @NotNull(message = "Username is required")
+    @NotNull(message = "Password is required")
     @NotBlank(message = "Field can not be blank")
-    @Size(min = 3, max = 20, message = "Username must be between 3-20 characters long")
+    @Size(min = 3, max = 20, message = "Password must be between 9-20 characters long")
     private String verifyPassword;
 
     public String getVerifyPassword() {
@@ -19,3 +22,5 @@ public class RegistrationFormDTO extends LoginFormDTO{
         this.verifyPassword = verifyPassword;
     }
 }
+
+
