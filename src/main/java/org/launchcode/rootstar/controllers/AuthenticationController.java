@@ -136,13 +136,6 @@ public class AuthenticationController {
 
 
 
-//        return ResponseEntity.ok("{\"message\": \"Login successful\"}");
-//    }
-
-
-
-
-
     @GetMapping ("/logout")
     public String logout (HttpServletRequest request) {
             request.getSession().invalidate();

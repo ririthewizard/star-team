@@ -26,6 +26,6 @@ public class HomepageController {
     @GetMapping("/home")
     public String home() {
         // Handle the request for the /home endpoint
-        return "Hello from the /home endpoint!";
+        return "Welcome to ADMIN portal";
     }
 }
