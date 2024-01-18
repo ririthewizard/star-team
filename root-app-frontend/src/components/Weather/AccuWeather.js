@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import { Container, Paper, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
+// API KEY ANDREW WOODCOCK: O18vFRDTyjGn0jwdAIbQ9aFVdGMZY3kN
+
 export default function AccuWeather() {
   // Initializes state to an empty array
   const [weather, setWeather] = useState([]);
@@ -20,7 +22,7 @@ export default function AccuWeather() {
       })
       // CONSOLE LOG TO CONFIRM IN CONSOLE THAT A GARDEN WAS SEARCHED FOR
       .then(() => {
-        console.log("Pulled weather data for area core " + searchQuery);
+        console.log("Pulled weather data for area code " + searchQuery);
       })
       // ERROR CATCH
       .catch((error) => {
@@ -54,51 +56,22 @@ export default function AccuWeather() {
               color="primary"
               onClick={handleSearchSubmission}
             >
-              Search for Gardens
+              Get the Five Day Forecast
             </Button>
           </form>
-          <h1>
-            THIS SECTION BELOW TO BE UDPATED WITH SPECIFIC WEATHER FOR FORCAST
-          </h1>
-          {/* {weather.map((location) => (
-            <Paper key={garden.id}>
-              <h4>{garden.name} Details:</h4>
-              Id: {garden.id} <br />
-              Description: {garden.description} <br />
-              Seeds:
-              {garden.gardenSeeds.map((seed) => (
-                <div key={seed.id}>
-                  <ul>
-                    <li>Name: {seed.name}</li>
-                    <li>Description: {seed.description}</li>
-                    <li>Growing Zone:{seed.growingZone}</li>
-                    <li>Days to Germination: {seed.daysToGermination}</li>
-                    <li>Annual or Perennial: {seed.annualOrPerennial}</li>
-                  </ul>
-                </div>
+          <div>
+            {weather.five_day &&
+              weather.five_day.map((day) => (
+                <Paper key={day.EpochDate}>
+                  Date: {day.Date} <br />
+                  Weather: {day.Day.IconPhrase} <br />
+                  Temperature: Between {day.Temperature.Minimum.Value} and{" "}
+                  {day.Temperature.Maximum.Value} Degrees Fahrenheit
+                  <br />
+                  <br />
+                </Paper>
               ))}
-              Plants:
-              {garden.gardenPlants.map((plant) => (
-                <div key={garden.id}>
-                  <ul>
-                    <li>Name: {plant.name}</li>
-                    <li>Description: {plant.description}</li>
-                    <li>Growing Zone:{plant.growingZone}</li>
-                    <li>Annual or Perennial: {plant.annualOrPerennial}</li>
-                  </ul>
-                </div>
-              ))}
-              Soil:
-              <div>
-                <ul>
-                  <li>{garden.gardenSoil.name}</li>
-                  <li>{garden.gardenSoil.description}</li>
-                  <li>{garden.gardenSoil.type}</li>
-                </ul>
-              </div>
-              <br />
-            </Paper>
-          ))} */}
+          </div>
         </Paper>
       </Container>
     </Box>

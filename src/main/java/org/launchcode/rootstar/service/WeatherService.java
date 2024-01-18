@@ -23,7 +23,7 @@ public class WeatherService {
 //        String key = locationData.get("Key");
 
         //API request URL with location key
-        String urlString = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey + "?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE";
+        String urlString = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey + "?apikey=O18vFRDTyjGn0jwdAIbQ9aFVdGMZY3kN";
 
         try{
             //call api and get response
@@ -52,7 +52,6 @@ public class WeatherService {
             JsonElement fiveDay = resultsJsonObj.getAsJsonArray("DailyForecasts");
 
             // confirm that JsonElement contains data
-            System.out.println(fiveDay);
 
             JsonObject weatherData = new JsonObject();
 
@@ -72,7 +71,7 @@ public class WeatherService {
     //retrieves location key using postal codes
     public static String getLocationData(String postalCode){
         System.out.println(postalCode);
-        String urlString = "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=FGZPcs0psWYrremDRCAfgYcOAZhFXxeE&q=" + postalCode;
+        String urlString = "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=O18vFRDTyjGn0jwdAIbQ9aFVdGMZY3kN&q=" + postalCode;
         System.out.println(urlString);
 
         try {
@@ -99,12 +98,11 @@ public class WeatherService {
 
                 //parse JSON string into JSON obj
                 JsonArray jsonArray = JsonParser.parseString(resultJson.toString()).getAsJsonArray();
-                System.out.println(jsonArray);
+
                 JsonObject result = jsonArray.get(0).getAsJsonObject();
-                System.out.println(result);
+
                 String key = result.get("Key").getAsString();
-                System.out.println(key);
-                System.out.println(key);
+
                 return key;
             }
         } catch(Exception e){

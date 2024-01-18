@@ -6,10 +6,7 @@ import org.launchcode.rootstar.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("weather")
@@ -20,11 +17,9 @@ public class WeatherController {
     private WeatherService weatherService;
 
     @GetMapping("forecast")
-    public ResponseEntity<String> getFiveDay(String postalCode) {
-        System.out.println(postalCode);
-        JsonObject forecast = weatherService.getWeatherData(postalCode);
+    public ResponseEntity<String> getFiveDay(@RequestParam String q) {
+        JsonObject forecast = weatherService.getWeatherData(q);
         String jsonString = forecast.toString();
-
         return new ResponseEntity<>(jsonString, HttpStatus.OK);
     }
 }
