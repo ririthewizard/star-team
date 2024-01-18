@@ -1,6 +1,6 @@
-package org.launchcode.rootstar.models.data;
+package org.launchcode.rootstar.service.models.data;
 
-import org.launchcode.rootstar.models.Seed;
+import org.launchcode.rootstar.service.models.Seed;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

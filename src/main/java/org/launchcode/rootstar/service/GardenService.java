@@ -1,14 +1,14 @@
 package org.launchcode.rootstar.service;
 
 import jakarta.transaction.Transactional;
-import org.launchcode.rootstar.models.Garden;
-import org.launchcode.rootstar.models.Plant;
-import org.launchcode.rootstar.models.Seed;
-import org.launchcode.rootstar.models.Soil;
-import org.launchcode.rootstar.models.data.GardenRepository;
-import org.launchcode.rootstar.models.data.PlantRepository;
-import org.launchcode.rootstar.models.data.SeedRepository;
-import org.launchcode.rootstar.models.data.SoilRepository;
+import org.launchcode.rootstar.service.models.Garden;
+import org.launchcode.rootstar.service.models.Plant;
+import org.launchcode.rootstar.service.models.Seed;
+import org.launchcode.rootstar.service.models.Soil;
+import org.launchcode.rootstar.service.models.data.GardenRepository;
+import org.launchcode.rootstar.service.models.data.PlantRepository;
+import org.launchcode.rootstar.service.models.data.SeedRepository;
+import org.launchcode.rootstar.service.models.data.SoilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

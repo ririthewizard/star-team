@@ -29,6 +29,11 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.security:spring-security-crypto' //to encrypt the password
+	// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation 'org.json:json:20231013'
+	implementation 'com.google.code.gson:gson:2.10.1'
 
 }
 

@@ -1,6 +1,6 @@
 package org.launchcode.rootstar.controllers;
 
-import org.launchcode.rootstar.models.Seed;
+import org.launchcode.rootstar.service.models.Seed;
 import org.launchcode.rootstar.service.SeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

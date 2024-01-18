@@ -1,0 +1,163 @@
+{
+    "five_day": [
+        {
+            "Date": "2024-01-17T07:00:00-06:00",
+            "EpochDate": 1705496400,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 26.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 41.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 7,
+                "IconPhrase": "Cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=1&lang=en-us",
+            "Link": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=1&lang=en-us"
+        },
+        {
+            "Date": "2024-01-18T07:00:00-06:00",
+            "EpochDate": 1705582800,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 9.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 38.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 19,
+                "IconPhrase": "Flurries",
+                "HasPrecipitation": true,
+                "PrecipitationType": "Snow",
+                "PrecipitationIntensity": "Light"
+            },
+            "Night": {
+                "Icon": 19,
+                "IconPhrase": "Flurries",
+                "HasPrecipitation": true,
+                "PrecipitationType": "Snow",
+                "PrecipitationIntensity": "Moderate"
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=2&lang=en-us",
+            "Link": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=2&lang=en-us"
+        },
+        {
+            "Date": "2024-01-19T07:00:00-06:00",
+            "EpochDate": 1705669200,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 3.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 17.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 31,
+                "IconPhrase": "Cold",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 31,
+                "IconPhrase": "Cold",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=3&lang=en-us",
+            "Link": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=3&lang=en-us"
+        },
+        {
+            "Date": "2024-01-20T07:00:00-06:00",
+            "EpochDate": 1705755600,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 9.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 17.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 31,
+                "IconPhrase": "Cold",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 31,
+                "IconPhrase": "Cold",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=4&lang=en-us",
+            "Link": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=4&lang=en-us"
+        },
+        {
+            "Date": "2024-01-21T07:00:00-06:00",
+            "EpochDate": 1705842000,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 27.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 31.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 3,
+                "IconPhrase": "Partly sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 38,
+                "IconPhrase": "Mostly cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=5&lang=en-us",
+            "Link": "http://www.accuweather.com/en/us/saint-louis-mo/63101/daily-weather-forecast/27786_pc?day=5&lang=en-us"
+        }
+    ]
+}

@@ -3,13 +3,12 @@ package org.launchcode.rootstar.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.launchcode.rootstar.models.User;
+import org.launchcode.rootstar.service.models.User;
 import jakarta.servlet.http.HttpSession;
-import org.launchcode.rootstar.models.User;
 import org.springframework.ui.Model;
-import org.launchcode.rootstar.models.dto.LoginFormDTO;
-import org.launchcode.rootstar.models.dto.RegistrationFormDTO;
-import org.launchcode.rootstar.models.data.UserRepository;
+import org.launchcode.rootstar.service.models.dto.LoginFormDTO;
+import org.launchcode.rootstar.service.models.dto.RegistrationFormDTO;
+import org.launchcode.rootstar.service.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
