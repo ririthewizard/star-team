@@ -1,7 +1,8 @@
 package org.launchcode.rootstar.service;
 
 
-import org.launchcode.rootstar.service.models.Garden;
+
+import org.launchcode.rootstar.models.Garden;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
