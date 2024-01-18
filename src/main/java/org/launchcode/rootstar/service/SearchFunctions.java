@@ -2,9 +2,11 @@ package org.launchcode.rootstar.service;
 
 
 import org.launchcode.rootstar.models.Garden;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class SearchFunctions {
 
     public static ArrayList<Garden> findByColumnAndValue(String column, String value, Iterable<Garden> allGardens) {
