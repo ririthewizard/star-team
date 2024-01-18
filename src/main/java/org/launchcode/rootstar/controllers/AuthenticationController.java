@@ -5,6 +5,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.servlet.http.HttpSession;
 import org.launchcode.rootstar.models.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.launchcode.rootstar.models.dto.LoginFormDTO;
@@ -94,7 +96,7 @@ public class AuthenticationController {
              userRepository.save(newUser);
              setUserInSession(request.getSession(),newUser);
             System.out.println("Registration form processed");
-             return "redirect:/journal/add"; // sends user to the view-garden page (in  GardenController)
+             return "redirect:/home"; // sends user to the view-garden page (in  GardenController)
     }
 
     @GetMapping("/login")
@@ -129,8 +131,17 @@ public class AuthenticationController {
 
 
             setUserInSession(request.getSession(), theUser);
-            return "redirect:/journal/add";
+            return "redirect:/home";
     }
+
+
+
+//        return ResponseEntity.ok("{\"message\": \"Login successful\"}");
+//    }
+
+
+
+
 
     @GetMapping ("/logout")
     public String logout (HttpServletRequest request) {

@@ -13,7 +13,7 @@ import Register from "./components/Register";
 import { Link, Routes, Route } from "react-router-dom";
 import AddJournal from "./components/Journal/AddJournal";
 import ViewJournal from "./components/Journal/ViewJournal";
-import Home from "./components/Home";
+// import Home from "./components/Home";
 
 
 function App() {
@@ -28,9 +28,9 @@ function App() {
       <nav>
         <ul>
   {/*Link is like an anchor tag <a>, and to= is like href*/}
-          <li>
+          {/* <li>
             <Link to="/home">Home</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/login">Login</Link>
           </li>
@@ -72,7 +72,7 @@ function App() {
       </nav>
       <Routes>
         {/* path determinds the URL, element determins which Hook is used. */}
-        <Route path="/home" element={<Home />} />
+        {/* <Route path="/home" element={<Home />} /> */}
 
         <Route path="/login" element={<Login />} />
 

@@ -31,18 +31,18 @@ public class JournalController {
 
     }
 
-    @GetMapping("/view-journal")
-    // Returns all journals in repository
-    public List<Journal> viewJournals() {
-        return journalService.getAllJournals();
-    }
-
 //    @GetMapping("/view-journal")
 //    // Returns all journals in repository
-//    public List<Journal> viewJournals(Model model, HttpSession session) {
-//        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+//    public List<Journal> viewJournals() {
 //        return journalService.getAllJournals();
 //    }
+
+    @GetMapping("/view-journal")
+    // Returns all journals in repository
+    public List<Journal> viewJournals(Model model, HttpSession session) {
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+        return journalService.getAllJournals();
+    }
 
 
 
