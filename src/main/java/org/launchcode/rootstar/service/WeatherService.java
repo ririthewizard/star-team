@@ -11,6 +11,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+
+// API KEY RILEY WILLIAMS: hjJ7w9IrFy8Dl2r1YEjKxs4Zs95Tm6GJ
+// API KEY ANDREW WOODCOCK: O18vFRDTyjGn0jwdAIbQ9aFVdGMZY3kN
+
 @Service
 public class WeatherService {
 
@@ -18,12 +22,9 @@ public class WeatherService {
 
         String locationKey = getLocationData(postalCode);
 
-        //get location key from postal code
-//        JSONObject location = (JSONObject) locationData.get(0);
-//        String key = locationData.get("Key");
 
         //API request URL with location key
-        String urlString = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey + "?apikey=O18vFRDTyjGn0jwdAIbQ9aFVdGMZY3kN";
+        String urlString = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/" + locationKey + "?apikey=hjJ7w9IrFy8Dl2r1YEjKxs4Zs95Tm6GJ";
 
         try{
             //call api and get response
@@ -71,7 +72,7 @@ public class WeatherService {
     //retrieves location key using postal codes
     public static String getLocationData(String postalCode){
         System.out.println(postalCode);
-        String urlString = "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=O18vFRDTyjGn0jwdAIbQ9aFVdGMZY3kN&q=" + postalCode;
+        String urlString = "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=hjJ7w9IrFy8Dl2r1YEjKxs4Zs95Tm6GJ&q=" + postalCode;
         System.out.println(urlString);
 
         try {
