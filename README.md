@@ -38,5 +38,7 @@ The application should open automatically in your browser.
 
 ## Credits
 Osmakova, Elena
+
 Williams, Riley
+
 Woodcock, Andrew
