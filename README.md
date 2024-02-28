@@ -6,7 +6,7 @@ Star Team ✨. Our project addresses the need for a high-quality, functional,
 and dynamic application to help gardeners organize and visualize their plots. 
 With Root, users can seamlessly add seeds, plants and soils to a comprehensive database, 
 compile gardens from database entries, add journal entries, create personalized gardening plots, 
-and access upcoming weather forecasts, and receive sage.
+and access upcoming weather forecasts, and receive sage advice.
 
 ## Problem Statement
 The gardening community lacks a reliable and feature-rich application for organizing 
@@ -15,7 +15,7 @@ manage their seeds, plants, soils and gardens, visualize their garden plots, wri
 and receive weather forecasts. 
 
 ## Features
-Root offers lgin and registration features, so amateur gardeners can sign up and log in with their chosen username and password.
+Root offers login and registration features, so amateur gardeners can sign up and log in with their chosen username and password.
 Root features full CRUD functionality. Users are able to build gardens using seeds, plants and soils they enter into the database.
 Users can also update old gardens with new information, or delete unwanted gardens. 
 For note keeping, users can write and save journal entries in Root. 
