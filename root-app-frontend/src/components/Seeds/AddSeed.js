@@ -55,23 +55,23 @@ export default function AddSeed() {
     let errors = {};
 
     if (!data.name.trim()) {
-      errors.name = "Seed name is required";
+      errors.name = "Seed name is required!";
     }
 
     if (!data.description.trim()) {
-      errors.description = "Seed description is required";
+      errors.description = "Seed description is required!";
     }
 
     if (!data.growingZone.trim()) {
-      errors.growingZone = "Seed growing zone is required";
+      errors.growingZone = "Seed growing zone is required!";
     }
 
     if (!data.daysToGermination.trim()) {
-      errors.daysToGermination = "Days to germination is required";
+      errors.daysToGermination = "Days to germination is required!";
     }
 
     if (!data.annualOrPerennial.trim()) {
-      errors.annualOrPerennial = "Annual / perennial is required";
+      errors.annualOrPerennial = "Annual / perennial is required!";
     }
 
     return errors;
@@ -99,7 +99,7 @@ export default function AddSeed() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            {errors.name && <span>{errors.name}</span>}
+            <p>{errors.name && <span>{errors.name}</span>}</p>
             {/* DESCRIPTION */}
             <TextField
               required
@@ -109,7 +109,7 @@ export default function AddSeed() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            {errors.description && <span>{errors.description}</span>}
+            <p>{errors.description && <span>{errors.description}</span>}</p>
             {/* GROWING ZONE */}
             <TextField
               required
@@ -118,7 +118,7 @@ export default function AddSeed() {
               value={growingZone}
               onChange={(e) => setGrowingZone(e.target.value)}
             />
-            {errors.growingZone && <span>{errors.growingZone}</span>}
+            <p>{errors.growingZone && <span>{errors.growingZone}</span>}</p>
             {/* DAYS TO GERMINATION */}
             <TextField
               id="outlined-number"
@@ -130,9 +130,11 @@ export default function AddSeed() {
               value={daysToGermination}
               onChange={(e) => setDaysToGermination(e.target.value)}
             />
-            {errors.daysToGermination && (
-              <span>{errors.daysToGermination}</span>
-            )}
+            <p>
+              {errors.daysToGermination && (
+                <span>{errors.daysToGermination}</span>
+              )}
+            </p>
             {/* ANNUAL OR PERENNIAL */}
             <TextField
               required
@@ -141,9 +143,11 @@ export default function AddSeed() {
               value={annualOrPerennial}
               onChange={(e) => setAnnualOrPerennial(e.target.value)}
             />
-            {errors.annualOrPerennial && (
-              <span>{errors.annualOrPerennial}</span>
-            )}
+            <p>
+              {errors.annualOrPerennial && (
+                <span>{errors.annualOrPerennial}</span>
+              )}
+            </p>
           </div>
           <Button variant="contained" onClick={handleSeedSubmission}>
             SUBMIT
