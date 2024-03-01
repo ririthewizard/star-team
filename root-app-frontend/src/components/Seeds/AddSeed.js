@@ -51,6 +51,8 @@ export default function AddSeed() {
     }
   };
 
+  // VALIDATION FUNCTION
+
   const validateSeed = (data) => {
     let errors = {};
 
