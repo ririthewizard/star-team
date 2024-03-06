@@ -52,15 +52,15 @@ export default function AddPlant() {
     let errors = {};
 
     if (!data.name.trim()) {
-      errors.name = "Seed name is required!";
+      errors.name = "Plant name is required!";
     }
 
     if (!data.description.trim()) {
-      errors.description = "Seed description is required!";
+      errors.description = "Plant description is required!";
     }
 
     if (!data.growingZone.trim()) {
-      errors.growingZone = "Seed growing zone is required!";
+      errors.growingZone = "Plant growing zone is required!";
     }
 
     if (!data.annualOrPerennial.trim()) {
