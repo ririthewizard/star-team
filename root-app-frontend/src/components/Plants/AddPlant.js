@@ -11,6 +11,9 @@ export default function AddPlant() {
   const [growingZone, setGrowingZone] = useState("");
   const [annualOrPerennial, setAnnualOrPerennial] = useState("");
 
+  // ERRORS
+  const [errors, setErrors] = useState({});
+
   // EVENT HANDLER FOR SUBMITTING A PLANT TO DATABASE
 
   const handlePlantSubmission = (e) => {
@@ -23,19 +26,48 @@ export default function AddPlant() {
     };
     // CONSOLE LOG TO CONFIRM THAT DATA IS SAVED TO JSON FORMAT
     console.log(plant);
-    fetch("http://localhost:8080/plants/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(plant),
-    })
-      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT PLANT IS ADDED
-      .then(() => {
-        console.log("New plant added");
+    const inputErrors = validatePlant(plant);
+    if (Object.keys(inputErrors).length === 0) {
+      fetch("http://localhost:8080/plants/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(plant),
       })
-      // ERROR CATCH
-      .catch((error) => {
-        console.error("Error adding plant:", error);
-      });
+        // CONSOLE LOG TO CONFIRM IN CONSOLE THAT PLANT IS ADDED
+        .then(() => {
+          console.log("New plant added");
+        })
+        // ERROR CATCH
+        .catch((error) => {
+          console.error("Error adding plant:", error);
+        });
+    } else {
+      setErrors(inputErrors);
+    }
+  };
+
+  // VALIDATION FUNCTION
+
+  const validatePlant = (data) => {
+    let errors = {};
+
+    if (!data.name.trim()) {
+      errors.name = "Plant name is required!";
+    }
+
+    if (!data.description.trim()) {
+      errors.description = "Plant description is required!";
+    }
+
+    if (!data.growingZone.trim()) {
+      errors.growingZone = "Plant growing zone is required!";
+    }
+
+    if (!data.annualOrPerennial.trim()) {
+      errors.annualOrPerennial = "Annual / perennial is required!";
+    }
+
+    return errors;
   };
 
   return (
@@ -60,6 +92,7 @@ export default function AddPlant() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            <p>{errors.name && <span>{errors.name}</span>}</p>
             {/* DESCRIPTION */}
             <TextField
               required
@@ -69,6 +102,7 @@ export default function AddPlant() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+            <p>{errors.description && <span>{errors.description}</span>}</p>
             {/* GROWING ZONE */}
             <TextField
               required
@@ -77,6 +111,7 @@ export default function AddPlant() {
               value={growingZone}
               onChange={(e) => setGrowingZone(e.target.value)}
             />
+            <p>{errors.growingZone && <span>{errors.growingZone}</span>}</p>
             {/* ANNUAL OR PERENNIAL */}
             <TextField
               required
@@ -85,6 +120,11 @@ export default function AddPlant() {
               value={annualOrPerennial}
               onChange={(e) => setAnnualOrPerennial(e.target.value)}
             />
+            <p>
+              {errors.annualOrPerennial && (
+                <span>{errors.annualOrPerennial}</span>
+              )}
+            </p>
           </div>
           <Button variant="contained" onClick={handlePlantSubmission}>
             SUBMIT

@@ -10,6 +10,9 @@ export default function AddSoil() {
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
 
+  // ERRORS
+  const [errors, setErrors] = useState({});
+
   // EVENT HANDLER FOR SUBMITTING A SOIL TO DATABASE
 
   const handleSoilSubmission = (e) => {
@@ -21,19 +24,42 @@ export default function AddSoil() {
     };
     // CONSOLE LOG TO CONFIRM THAT DATA IS SAVED TO JSON FORMAT
     console.log(soil);
-    fetch("http://localhost:8080/soil/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(soil),
-    })
-      // CONSOLE LOG TO CONFIRM IN CONSOLE THAT SOIL IS ADDED
-      .then(() => {
-        console.log("New soil added");
+    const inputErrors = validateSoil(soil);
+    if (Object.keys(inputErrors).length === 0) {
+      fetch("http://localhost:8080/soil/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(soil),
       })
-      // ERROR CATCH
-      .catch((error) => {
-        console.error("Error adding soil:", error);
-      });
+        // CONSOLE LOG TO CONFIRM IN CONSOLE THAT SOIL IS ADDED
+        .then(() => {
+          console.log("New soil added");
+        })
+        // ERROR CATCH
+        .catch((error) => {
+          console.error("Error adding soil:", error);
+        });
+    } else {
+      setErrors(inputErrors);
+    }
+  };
+
+  const validateSoil = (data) => {
+    let errors = {};
+
+    if (!data.name.trim()) {
+      errors.name = "Soil name is required!";
+    }
+
+    if (!data.description.trim()) {
+      errors.description = "Soil description is required!";
+    }
+
+    if (!data.type.trim()) {
+      errors.type = "Soil type is required!";
+    }
+
+    return errors;
   };
 
   return (
@@ -58,6 +84,7 @@ export default function AddSoil() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            <p>{errors.name && <span>{errors.name}</span>}</p>
             {/* DESCRIPTION */}
             <TextField
               required
@@ -67,6 +94,7 @@ export default function AddSoil() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+            <p>{errors.description && <span>{errors.description}</span>}</p>
             {/* GROWING ZONE */}
             <TextField
               required
@@ -75,6 +103,7 @@ export default function AddSoil() {
               value={type}
               onChange={(e) => setType(e.target.value)}
             />
+            <p>{errors.type && <span>{errors.type}</span>}</p>
           </div>
           <Button variant="contained" onClick={handleSoilSubmission}>
             SUBMIT
